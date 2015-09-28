@@ -24,5 +24,15 @@
             <artifactId>spring-webmvc</artifactId>
             <version>4.2.1.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>uk.laxd.deepweb</groupId>
+            <artifactId>deploy-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
     </dependencies>
 </project>
