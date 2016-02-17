@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import uk.laxd.deepweb.lang.Constants;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public abstract class AbstractDao<T> implements Dao {
     }
 
     public T findById(int id) {
-        List<T> output = findByRestrictions(new Restrictions().add("ID", Symbol.EQUALS, id));
+        List<T> output = findByRestrictions(new Restrictions().add(Constants.DB.ID_COLUMN, Symbol.EQUALS, id));
 
         if(output.size() > 0) {
             return output.get(0);
