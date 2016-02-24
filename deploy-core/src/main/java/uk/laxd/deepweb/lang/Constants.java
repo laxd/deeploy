@@ -16,6 +16,11 @@ public class Constants {
         public class BuildFlow {
             public static final String NAME_COLUMN = "NAME";
         }
+
+        public class BuildFlowStep {
+            public static final String BUILD_FLOW_ID_COLUMN = "BUILD_FLOW_ID";
+            public static final String TYPE_COLUMN = "TYPE";
+        }
     }
 
     public class SQL {

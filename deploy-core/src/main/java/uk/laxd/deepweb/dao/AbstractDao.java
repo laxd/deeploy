@@ -26,7 +26,7 @@ public abstract class AbstractDao<T> implements Dao {
         this.tableName = BUFFER + tableName + BUFFER;
     }
 
-    public T findById(int id) {
+    public T findById(Long id) {
         List<T> output = findByRestrictions(new Restrictions().add(Constants.DB.ID_COLUMN, Symbol.EQUALS, id));
 
         if(output.size() > 0) {

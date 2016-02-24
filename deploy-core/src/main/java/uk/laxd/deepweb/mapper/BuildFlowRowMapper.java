@@ -14,7 +14,7 @@ public class BuildFlowRowMapper implements RowMapper<BuildFlow> {
     public BuildFlow mapRow(ResultSet resultSet, int i) throws SQLException {
         BuildFlow buildFlow = new BuildFlow();
 
-        buildFlow.setId(resultSet.getInt(Constants.DB.ID_COLUMN));
+        buildFlow.setId(resultSet.getLong(Constants.DB.ID_COLUMN));
         buildFlow.setName(resultSet.getString(Constants.DB.BuildFlow.NAME_COLUMN));
 
         return buildFlow;

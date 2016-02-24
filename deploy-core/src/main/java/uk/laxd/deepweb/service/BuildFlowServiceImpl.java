@@ -16,6 +16,10 @@ public class BuildFlowServiceImpl implements BuildFlowService {
     @Autowired
     private BuildFlowDao buildFlowDao;
 
+    public BuildFlow findById(Long id) {
+        return buildFlowDao.findById(id);
+    }
+
     public List<BuildFlow> findAll() {
         return buildFlowDao.findAll();
     }

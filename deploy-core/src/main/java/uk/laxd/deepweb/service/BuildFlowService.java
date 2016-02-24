@@ -8,5 +8,6 @@ import java.util.List;
  * Created by lawrence on 16/02/16.
  */
 public interface BuildFlowService {
-    public List<BuildFlow> findAll();
+    BuildFlow findById(Long id);
+    List<BuildFlow> findAll();
 }
