@@ -18,7 +18,6 @@ import java.util.List;
 public class BuildFlowServiceImpl implements BuildFlowService {
 
     @Autowired
-    @Qualifier("buildFlowDao")
     private Dao<BuildFlow, Long> buildFlowDao;
 
     @Override

@@ -1,35 +1,76 @@
 package uk.laxd.deepweb.executor;
 
+import com.jcraft.jsch.*;
+
 import java.util.Map;
+import java.util.Properties;
 
 /**
  * Created by lawrence on 24/02/16.
  */
 public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
-
-
     public void executeWithArguments(Map<String, String> arguments) {
-        String sshType = arguments.get("SSH_TYPE");
+        JSch jSch = new JSch();
+        ChannelExec channel = null;
+        Session session = null;
+
+        try {
+            session = getAuthenticatedSession(jSch, arguments);
+
+            String command = arguments.get("COMMAND");
+
+            channel = (ChannelExec) session.openChannel("exec");
+
+            if(session.isConnected()) {
+                channel.setCommand(command);
+
+                channel.connect();
+                channel.disconnect();
+            }
+
+            // TODO: Return exit status.
+            // return channel.getExitStatus();
+
+        } catch (JSchException e) {
+            e.printStackTrace();
+            // TODO: Return exit status
+            // return 1;
+        }
+        finally {
+            if(channel != null) {
+                channel.disconnect();
+            }
+
+            if(session != null) {
+                session.disconnect();
+            }
+        }
+    }
+
+    private Session getAuthenticatedSession(JSch jSch, Map<String, String> arguments) throws JSchException {
         String username = arguments.get("USERNAME");
+        String hostname = arguments.get("HOSTNAME");
+        int port = Integer.parseInt(arguments.get("PORT"));
 
-        if("PASSWORD".equals(sshType)) {
-            String password = arguments.get("PASSWORD");
+        Session session = jSch.getSession(username, hostname, port);
+
+        Properties properties = new Properties();
+        properties.setProperty("StrictHostKeyChecking", "no");
+        session.setConfig(properties);
+
+        String sshType = arguments.get("SSH_TYPE");
+        if ("PASSWORD".equals(sshType)) {
+            session.setPassword(arguments.get("PASSWORD"));
+        } else if ("PRIVATE_KEY".equals(sshType)) {
+            jSch.addIdentity(arguments.get("PRIVATE_KEY"));
+        } else if ("PASSWORD_PROTECTED_PRIVATE_KEY".equals(sshType)) {
+            jSch.addIdentity(arguments.get("PRIVATE_KEY"),
+                    arguments.get("PASSWORD"));
         }
-        else if("PRIVATE_KEY".equals(sshType)) {
-            String privateKey = arguments.get("PRIVATE_KEY");
-        }
-        else if("PASSWORD_PROTECTED_PRIVATE_KEY".equals(sshType)) {
-            String password = arguments.get("PASSWORD");
-            String privateKey = arguments.get("PRIVATE_KEY");
-        }
 
-        String sshCommand = arguments.get("COMMAND");
+        session.connect();
 
-        // Do SSH stuff
-
-        //
-        // Execute ssh!
-
+        return session;
     }
 }
