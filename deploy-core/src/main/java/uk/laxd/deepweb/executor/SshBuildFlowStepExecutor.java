@@ -4,6 +4,7 @@ import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.Properties;
@@ -11,6 +12,7 @@ import java.util.Properties;
 /**
  * Created by lawrence on 24/02/16.
  */
+@Component
 public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
     public void executeWithArguments(Map<String, String> arguments) {
