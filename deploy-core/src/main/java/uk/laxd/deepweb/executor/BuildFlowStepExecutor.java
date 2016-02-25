@@ -24,11 +24,6 @@ public abstract class BuildFlowStepExecutor implements ApplicationContextAware {
     public abstract void executeWithArguments(Map<String, String> arguments);
 
     public static BuildFlowStepExecutor findExecutor(BuildFlowStepExecutorType type) {
-        switch (type) {
-            case SSH:
-                return new SshBuildFlowStepExecutor();
-            default:
-                throw new ExecutorNotFoundException();
-        }
+        return applicationContext.getBean(type.getBeanClass());
     }
 }
