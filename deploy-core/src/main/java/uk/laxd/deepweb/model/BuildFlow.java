@@ -10,7 +10,7 @@ import uk.laxd.deepweb.lang.Constants;
 @DatabaseTable(tableName = Constants.DB.BuildFlow.TABLE_NAME)
 public class BuildFlow extends DatabaseObject {
 
-    @DatabaseField
+    @DatabaseField(columnName = Constants.DB.BuildFlow.NAME_COLUMN)
     private String name;
 
     public String getName() {

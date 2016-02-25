@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.laxd.deepweb.model.BuildFlow;
+import uk.laxd.deepweb.model.BuildFlowStepArgument;
 
 import java.util.List;
 
@@ -32,6 +33,7 @@ public class BuildFlowServiceJUnitTest {
 
     @Before
     public void setUp() throws Exception {
+        TableUtils.dropTable(connectionSource, BuildFlow.class, true);
         TableUtils.createTable(connectionSource, BuildFlow.class);
 
         Dao<BuildFlow, Long> dao = DaoManager.createDao(connectionSource, BuildFlow.class);

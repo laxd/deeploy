@@ -9,13 +9,13 @@ import uk.laxd.deepweb.lang.Constants;
  */
 @DatabaseTable(tableName = Constants.DB.BuildFlowStepArgument.TABLE_NAME)
 public class BuildFlowStepArgument extends DatabaseObject {
-    @DatabaseField
+    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.NAME_COLUMN)
     private String name;
 
-    @DatabaseField
+    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.VALUE_COLUMN)
     private String value;
 
-    @DatabaseField
+    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.BUILD_FLOW_STEP_ID_COLUMN)
     private Long buildFlowStepId;
 
     public String getName() {

@@ -10,10 +10,10 @@ import uk.laxd.deepweb.lang.Constants;
 @DatabaseTable(tableName = Constants.DB.BuildFlowStep.TABLE_NAME)
 public class BuildFlowStep extends DatabaseObject {
 
-    @DatabaseField
+    @DatabaseField(columnName = Constants.DB.BuildFlowStep.BUILD_FLOW_ID_COLUMN)
     private Long buildFlowId;
 
-    @DatabaseField
+    @DatabaseField(columnName = Constants.DB.BuildFlowStep.TYPE_COLUMN)
     private String type;
 
     public Long getBuildFlowId() {
