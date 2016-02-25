@@ -10,5 +10,6 @@ import java.util.List;
  */
 public interface BuildFlowService {
     BuildFlow findById(Long id) throws NotFoundException;
+
     List<BuildFlow> findAll();
 }

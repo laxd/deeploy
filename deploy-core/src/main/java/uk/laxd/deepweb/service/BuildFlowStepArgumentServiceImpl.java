@@ -2,7 +2,6 @@ package uk.laxd.deepweb.service;
 
 import com.j256.ormlite.dao.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import uk.laxd.deepweb.lang.Constants;
 import uk.laxd.deepweb.lang.NotFoundException;
@@ -35,7 +34,7 @@ public class BuildFlowStepArgumentServiceImpl implements BuildFlowStepArgumentSe
             List<BuildFlowStepArgument> arguments = buildFlowStepArgumentDao.queryForEq(Constants.DB.BuildFlowStepArgument.BUILD_FLOW_STEP_ID_COLUMN, id);
             Map<String, String> map = new HashMap<>();
 
-            for(BuildFlowStepArgument argument : arguments) {
+            for (BuildFlowStepArgument argument : arguments) {
                 map.put(argument.getName(), argument.getValue());
             }
 

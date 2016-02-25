@@ -11,7 +11,7 @@
     <!-- Database setup -->
     <import resource="test-db-context.xml"/>
 
-    <bean id="databaseType" class="com.j256.ormlite.db.H2DatabaseType" />
+    <bean id="databaseType" class="com.j256.ormlite.db.H2DatabaseType"/>
 
     <bean id="dataSourceConnectionSource" class="com.j256.ormlite.jdbc.DataSourceConnectionSource">
         <constructor-arg ref="dataSource"/>
@@ -21,19 +21,19 @@
     <!-- DAO setup -->
     <bean id="buildFlowDao" class="com.j256.ormlite.dao.DaoManager"
           factory-method="createDao">
-        <constructor-arg ref="dataSourceConnectionSource" />
+        <constructor-arg ref="dataSourceConnectionSource"/>
         <constructor-arg name="clazz" value="uk.laxd.deepweb.model.BuildFlow"/>
     </bean>
 
     <bean id="buildFlowStepDao" class="com.j256.ormlite.dao.DaoManager"
           factory-method="createDao">
-        <constructor-arg ref="dataSourceConnectionSource" />
+        <constructor-arg ref="dataSourceConnectionSource"/>
         <constructor-arg name="clazz" value="uk.laxd.deepweb.model.BuildFlowStep"/>
     </bean>
 
     <bean id="buildFlowStepArgumentDao" class="com.j256.ormlite.dao.DaoManager"
           factory-method="createDao">
-        <constructor-arg name="connectionSource" ref="dataSourceConnectionSource" />
+        <constructor-arg name="connectionSource" ref="dataSourceConnectionSource"/>
         <constructor-arg name="clazz" value="uk.laxd.deepweb.model.BuildFlowStepArgument"/>
     </bean>
 

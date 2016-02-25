@@ -1,6 +1,9 @@
 package uk.laxd.deepweb.executor;
 
-import com.jcraft.jsch.*;
+import com.jcraft.jsch.ChannelExec;
+import com.jcraft.jsch.JSch;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.Session;
 
 import java.util.Map;
 import java.util.Properties;
@@ -22,7 +25,7 @@ public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
             channel = (ChannelExec) session.openChannel("exec");
 
-            if(session.isConnected()) {
+            if (session.isConnected()) {
                 channel.setCommand(command);
 
                 channel.connect();
@@ -36,13 +39,12 @@ public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
             e.printStackTrace();
             // TODO: Return exit status
             // return 1;
-        }
-        finally {
-            if(channel != null) {
+        } finally {
+            if (channel != null) {
                 channel.disconnect();
             }
 
-            if(session != null) {
+            if (session != null) {
                 session.disconnect();
             }
         }
