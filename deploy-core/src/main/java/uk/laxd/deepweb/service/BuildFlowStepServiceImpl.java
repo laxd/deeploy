@@ -1,10 +1,14 @@
 package uk.laxd.deepweb.service;
 
+import com.j256.ormlite.dao.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.laxd.deepweb.dao.BuildFlowStepDao;
+import uk.laxd.deepweb.lang.Constants;
+import uk.laxd.deepweb.lang.NotFoundException;
 import uk.laxd.deepweb.model.BuildFlowStep;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,13 +18,21 @@ import java.util.List;
 public class BuildFlowStepServiceImpl implements BuildFlowStepService {
 
     @Autowired
-    private BuildFlowStepDao buildFlowStepDao;
+    private Dao<BuildFlowStep, Long> buildFlowStepDao;
 
-    public BuildFlowStep findById(Long id) {
-        return buildFlowStepDao.findById(id);
+    public BuildFlowStep findById(Long id) throws NotFoundException {
+        try {
+            return buildFlowStepDao.queryForId(id);
+        } catch (SQLException e) {
+            throw new NotFoundException(e);
+        }
     }
 
     public List<BuildFlowStep> findByBuildFlowId(Long id) {
-        return buildFlowStepDao.findByBuildFlowId(id);
+        try {
+            return buildFlowStepDao.queryForEq(Constants.DB.BuildFlowStep.BUILD_FLOW_ID_COLUMN, id);
+        } catch (SQLException e) {
+            return new ArrayList<>();
+        }
     }
 }
