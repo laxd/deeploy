@@ -4,7 +4,8 @@ package uk.laxd.deepweb.executor;
  * Created by lawrence on 24/02/16.
  */
 public enum BuildFlowStepExecutorType {
-    SSH(SshBuildFlowStepExecutor.class);
+    SSH(SshBuildFlowStepExecutor.class),
+    GIT(GitBuildFlowStepExecutor.class);
 
     private Class<? extends BuildFlowStepExecutor> beanClass;
 

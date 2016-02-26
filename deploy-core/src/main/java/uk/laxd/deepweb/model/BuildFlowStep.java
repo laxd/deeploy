@@ -13,8 +13,8 @@ public class BuildFlowStep extends DatabaseObject {
     @DatabaseField(columnName = Constants.DB.BuildFlowStep.BUILD_FLOW_ID_COLUMN)
     private Long buildFlowId;
 
-    @DatabaseField(columnName = Constants.DB.BuildFlowStep.TYPE_COLUMN)
-    private String type;
+    @DatabaseField(columnName = Constants.DB.BuildFlowStep.EXECUTOR_ID_COLUMN)
+    private Long executorId;
 
     public Long getBuildFlowId() {
         return buildFlowId;
@@ -24,11 +24,11 @@ public class BuildFlowStep extends DatabaseObject {
         this.buildFlowId = buildFlowId;
     }
 
-    public String getType() {
-        return type;
+    public Long getExecutorId() {
+        return executorId;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setExecutorId(Long executorId) {
+        this.executorId = executorId;
     }
 }

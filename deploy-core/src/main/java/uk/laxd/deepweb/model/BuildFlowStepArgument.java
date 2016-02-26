@@ -9,22 +9,14 @@ import uk.laxd.deepweb.lang.Constants;
  */
 @DatabaseTable(tableName = Constants.DB.BuildFlowStepArgument.TABLE_NAME)
 public class BuildFlowStepArgument extends DatabaseObject {
-    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.NAME_COLUMN)
-    private String name;
-
     @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.VALUE_COLUMN)
     private String value;
 
+    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.EXECUTOR_ARGUMENT_ID_COLUMN)
+    private Long executorArgumentId;
+
     @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.BUILD_FLOW_STEP_ID_COLUMN)
     private Long buildFlowStepId;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getValue() {
         return value;
@@ -32,6 +24,14 @@ public class BuildFlowStepArgument extends DatabaseObject {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Long getExecutorArgumentId() {
+        return executorArgumentId;
+    }
+
+    public void setExecutorArgumentId(Long executorArgumentId) {
+        this.executorArgumentId = executorArgumentId;
     }
 
     public Long getBuildFlowStepId() {
