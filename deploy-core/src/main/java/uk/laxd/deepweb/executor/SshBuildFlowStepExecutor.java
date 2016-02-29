@@ -6,6 +6,7 @@ import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.springframework.stereotype.Component;
 import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
+import uk.laxd.deepweb.plugin.ExecutionResult;
 
 import java.util.Map;
 import java.util.Properties;
@@ -21,7 +22,7 @@ public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
         return "SSH";
     }
 
-    public void executeWithArguments(Map<String, String> arguments) {
+    public ExecutionResult executeWithArguments(Map<String, String> arguments) {
         JSch jSch = new JSch();
         ChannelExec channel = null;
         Session session = null;
@@ -40,13 +41,10 @@ public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
                 channel.disconnect();
             }
 
-            // TODO: Return exit status.
-            // return channel.getExitStatus();
-
+            return new ExecutionResult(channel.getExitStatus());
         } catch (JSchException e) {
             e.printStackTrace();
-            // TODO: Return exit status
-            // return 1;
+            return new ExecutionResult(1, e.getMessage());
         } finally {
             if (channel != null) {
                 channel.disconnect();

@@ -5,6 +5,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.stereotype.Component;
 import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
+import uk.laxd.deepweb.plugin.ExecutionResult;
 
 import java.io.File;
 import java.util.*;
@@ -20,7 +21,7 @@ public class GitBuildFlowStepExecutor extends BuildFlowStepExecutor {
     }
 
     @Override
-    public void executeWithArguments(Map<String, String> arguments) {
+    public ExecutionResult executeWithArguments(Map<String, String> arguments) {
         UUID uuid = UUID.randomUUID();
         File gitLocation = new File("/tmp/git/" + uuid.toString());
 
@@ -43,8 +44,10 @@ public class GitBuildFlowStepExecutor extends BuildFlowStepExecutor {
             );
 
             clone.call();
+            return new ExecutionResult(0);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ExecutionResult(1, e.getMessage());
         }
         finally {
             gitLocation.delete();
