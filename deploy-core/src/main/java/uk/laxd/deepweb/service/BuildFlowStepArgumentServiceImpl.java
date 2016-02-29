@@ -29,12 +29,13 @@ public class BuildFlowStepArgumentServiceImpl implements BuildFlowStepArgumentSe
         }
     }
 
-    public Map<String, String> findMapByBuildFlowStepId(Long id) {
+    public Map<String, String> findMapByBuildFlowStepId(Long id) throws NotFoundException {
         try {
-            List<BuildFlowStepArgument> arguments = buildFlowStepArgumentDao.queryForEq(Constants.DB.BuildFlowStepArgument.BUILD_FLOW_STEP_ID_COLUMN, id);
             Map<String, String> map = new HashMap<>();
 
-            for (BuildFlowStepArgument argument : arguments) {
+            List<BuildFlowStepArgument> arguments = buildFlowStepArgumentDao.queryForEq(Constants.DB.BuildFlowStepArgument.BUILD_FLOW_STEP_ID_COLUMN, id);
+
+            for(BuildFlowStepArgument argument : arguments) {
                 map.put(argument.getName(), argument.getValue());
             }
 

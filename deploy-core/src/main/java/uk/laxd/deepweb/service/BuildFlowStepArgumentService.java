@@ -11,5 +11,5 @@ import java.util.Map;
 public interface BuildFlowStepArgumentService {
     BuildFlowStepArgument findById(Long id) throws NotFoundException;
 
-    Map<String, String> findMapByBuildFlowStepId(Long id);
+    Map<String, String> findMapByBuildFlowStepId(Long id) throws NotFoundException;
 }

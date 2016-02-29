@@ -5,6 +5,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.springframework.stereotype.Component;
+import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
 
 import java.util.Map;
 import java.util.Properties;
@@ -14,6 +15,11 @@ import java.util.Properties;
  */
 @Component
 public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
+
+    @Override
+    public String getType() {
+        return "SSH";
+    }
 
     public void executeWithArguments(Map<String, String> arguments) {
         JSch jSch = new JSch();

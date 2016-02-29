@@ -44,9 +44,10 @@ public class Constants {
             }
 
             public static final String TABLE_NAME = "BUILD_FLOW_STEP_ARGUMENT";
+            public static final String NAME_COLUMN = "NAME";
             public static final String VALUE_COLUMN = "VALUE";
             public static final String BUILD_FLOW_STEP_ID_COLUMN = "BUILD_FLOW_STEP_ID";
-            public static final String EXECUTOR_ARGUMENT_ID_COLUMN = "EXECUTOR_ARGUMENT_ID";
+            public static final String EXECUTOR_ID_COLUMN = "EXECUTOR_ID";
         }
 
         public class ExecutorArgument {
@@ -54,18 +55,18 @@ public class Constants {
             }
 
             public static final String TABLE_NAME = "EXECUTOR_ARGUMENT";
+            public static final String DISPLAY_NAME_COLUMN = "DISPLAY_NAME";
             public static final String NAME_COLUMN = "NAME";
-            public static final String MANDATORY_COLUMN = "MANDATORY";
-            public static final String DEFAULT_COLUMN = "DEFAULT";
-            public static final String EXECUTOR_ARGUMENT_ID = "EXECUTOR_ARGUMENT_ID";
+            public static final String EXECUTOR_ID = "EXECUTOR_ID";
         }
 
         public class Executor {
             private Executor() {
             }
 
-            public static final String TABLE_NAME = "EXECUTOR";
+            public static final String NAME_COLUMN = "NAME";
             public static final String TYPE_COLUMN = "TYPE";
+            public static final String TABLE_NAME = "EXECUTOR";
         }
     }
 }

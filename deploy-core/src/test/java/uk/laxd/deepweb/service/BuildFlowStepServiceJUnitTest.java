@@ -39,14 +39,12 @@ public class BuildFlowStepServiceJUnitTest {
 
         BuildFlowStep buildFlowStep = new BuildFlowStep();
         buildFlowStep.setId(1L);
-        buildFlowStep.setType("TEST");
         buildFlowStep.setBuildFlowId(123L);
 
         dao.create(buildFlowStep);
 
         BuildFlowStep buildFlowStep2 = new BuildFlowStep();
         buildFlowStep2.setId(2L);
-        buildFlowStep2.setType("TEST2");
         buildFlowStep2.setBuildFlowId(123L);
 
         dao.create(buildFlowStep2);
@@ -57,7 +55,6 @@ public class BuildFlowStepServiceJUnitTest {
         BuildFlowStep buildFlowStep = buildFlowStepService.findById(1L);
 
         assertNotNull(buildFlowStep);
-        assertEquals("TEST", buildFlowStep.getType());
     }
 
     @Test

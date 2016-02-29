@@ -13,11 +13,11 @@ public class ExecutorArgument extends DatabaseObject {
     @DatabaseField(columnName = Constants.DB.ExecutorArgument.NAME_COLUMN)
     private String name;
 
-    @DatabaseField(columnName = Constants.DB.ExecutorArgument.MANDATORY_COLUMN)
-    private boolean mandatory;
+    @DatabaseField(columnName = Constants.DB.ExecutorArgument.DISPLAY_NAME_COLUMN)
+    private String displayName;
 
-    @DatabaseField(columnName = Constants.DB.ExecutorArgument.DEFAULT_COLUMN)
-    private String defaultValue;
+    @DatabaseField(columnName = Constants.DB.ExecutorArgument.EXECUTOR_ID)
+    private Long executorId;
 
     public String getName() {
         return name;
@@ -27,19 +27,19 @@ public class ExecutorArgument extends DatabaseObject {
         this.name = name;
     }
 
-    public boolean isMandatory() {
-        return mandatory;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setMandatory(boolean mandatory) {
-        this.mandatory = mandatory;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
-    public String getDefaultValue() {
-        return defaultValue;
+    public Long getExecutorId() {
+        return executorId;
     }
 
-    public void setDefaultValue(String defaultValue) {
-        this.defaultValue = defaultValue;
+    public void setExecutorId(Long executorId) {
+        this.executorId = executorId;
     }
 }

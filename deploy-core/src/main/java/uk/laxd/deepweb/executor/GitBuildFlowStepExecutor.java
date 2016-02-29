@@ -3,6 +3,8 @@ package uk.laxd.deepweb.executor;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
+import org.springframework.stereotype.Component;
+import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
 
 import java.io.File;
 import java.util.*;
@@ -10,7 +12,13 @@ import java.util.*;
 /**
  * Created by lawrence on 26/02/16.
  */
+@Component
 public class GitBuildFlowStepExecutor extends BuildFlowStepExecutor {
+    @Override
+    public String getType() {
+        return "GIT";
+    }
+
     @Override
     public void executeWithArguments(Map<String, String> arguments) {
         UUID uuid = UUID.randomUUID();

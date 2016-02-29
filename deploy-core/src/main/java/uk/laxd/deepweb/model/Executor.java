@@ -10,8 +10,19 @@ import uk.laxd.deepweb.lang.Constants;
 @DatabaseTable(tableName = Constants.DB.Executor.TABLE_NAME)
 public class Executor extends DatabaseObject {
 
+    @DatabaseField(columnName = Constants.DB.Executor.NAME_COLUMN)
+    private String name;
+
     @DatabaseField(columnName = Constants.DB.Executor.TYPE_COLUMN)
     private String type;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getType() {
         return type;
