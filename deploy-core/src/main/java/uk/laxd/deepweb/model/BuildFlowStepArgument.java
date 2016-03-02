@@ -16,8 +16,8 @@ public class BuildFlowStepArgument extends DatabaseObject {
     @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.VALUE_COLUMN)
     private String value;
 
-    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.BUILD_FLOW_STEP_ID_COLUMN)
-    private Long buildFlowStepId;
+    @DatabaseField(foreign = true)
+    private BuildFlowStep buildFlowStep;
 
     public String getValue() {
         return value;
@@ -27,19 +27,19 @@ public class BuildFlowStepArgument extends DatabaseObject {
         this.value = value;
     }
 
-    public Long getBuildFlowStepId() {
-        return buildFlowStepId;
-    }
-
-    public void setBuildFlowStepId(Long buildFlowStepId) {
-        this.buildFlowStepId = buildFlowStepId;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public BuildFlowStep getBuildFlowStep() {
+        return buildFlowStep;
+    }
+
+    public void setBuildFlowStep(BuildFlowStep buildFlowStep) {
+        this.buildFlowStep = buildFlowStep;
     }
 }

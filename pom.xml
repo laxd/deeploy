@@ -11,6 +11,7 @@
     <name>Deploy Web App</name>
 
     <modules>
+        <module>deploy-plugin</module>
         <module>deploy-core</module>
         <module>deploy-web</module>
     </modules>
@@ -22,15 +23,33 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>com.h2database</groupId>
+                <artifactId>h2</artifactId>
+                <version>1.4.191</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.18</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>1.7.18</version>
+            </dependency>
+
+            <!-- Test Dependencies -->
+            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>4.12</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.h2database</groupId>
-                <artifactId>h2</artifactId>
-                <version>1.4.191</version>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

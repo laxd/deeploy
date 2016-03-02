@@ -1,6 +1,8 @@
 package uk.laxd.deepweb.model;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import uk.laxd.deepweb.lang.Constants;
 
@@ -15,6 +17,9 @@ public class Executor extends DatabaseObject {
 
     @DatabaseField(columnName = Constants.DB.Executor.TYPE_COLUMN)
     private String type;
+
+    @ForeignCollectionField
+    private ForeignCollection<ExecutorArgument> arguments;
 
     public String getName() {
         return name;

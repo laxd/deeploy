@@ -37,6 +37,12 @@
         <constructor-arg name="clazz" value="uk.laxd.deepweb.model.ExecutorArgument"/>
     </bean>
 
+    <bean id="executorDao" class="com.j256.ormlite.dao.DaoManager"
+          factory-method="createDao">
+        <constructor-arg ref="dataSourceConnectionSource"/>
+        <constructor-arg name="clazz" value="uk.laxd.deepweb.model.Executor"/>
+    </bean>
+
     <bean id="buildFlowStepArgumentDao" class="com.j256.ormlite.dao.DaoManager"
           factory-method="createDao">
         <constructor-arg name="connectionSource" ref="dataSourceConnectionSource"/>

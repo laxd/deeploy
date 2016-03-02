@@ -8,14 +8,10 @@ import uk.laxd.deepweb.lang.Constants;
  */
 public abstract class DatabaseObject {
 
-    @DatabaseField(columnName = Constants.DB.ID_COLUMN, id = true)
+    @DatabaseField(columnName = Constants.DB.ID_COLUMN, generatedId = true)
     private Long id;
 
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

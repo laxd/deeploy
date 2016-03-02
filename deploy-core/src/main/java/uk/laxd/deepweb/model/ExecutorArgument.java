@@ -16,8 +16,8 @@ public class ExecutorArgument extends DatabaseObject {
     @DatabaseField(columnName = Constants.DB.ExecutorArgument.DISPLAY_NAME_COLUMN)
     private String displayName;
 
-    @DatabaseField(columnName = Constants.DB.ExecutorArgument.EXECUTOR_ID)
-    private Long executorId;
+    @DatabaseField(foreign = true)
+    private Executor executor;
 
     public String getName() {
         return name;
@@ -33,13 +33,5 @@ public class ExecutorArgument extends DatabaseObject {
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
-    }
-
-    public Long getExecutorId() {
-        return executorId;
-    }
-
-    public void setExecutorId(Long executorId) {
-        this.executorId = executorId;
     }
 }

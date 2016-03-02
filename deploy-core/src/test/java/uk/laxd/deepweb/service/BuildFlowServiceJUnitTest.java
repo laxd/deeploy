@@ -38,13 +38,11 @@ public class BuildFlowServiceJUnitTest {
         Dao<BuildFlow, Long> dao = DaoManager.createDao(connectionSource, BuildFlow.class);
 
         BuildFlow buildFlow = new BuildFlow();
-        buildFlow.setId(1L);
         buildFlow.setName("TEST");
 
         dao.create(buildFlow);
 
         BuildFlow buildFlow2 = new BuildFlow();
-        buildFlow2.setId(2L);
         buildFlow2.setName("TEST2");
 
         dao.create(buildFlow2);
