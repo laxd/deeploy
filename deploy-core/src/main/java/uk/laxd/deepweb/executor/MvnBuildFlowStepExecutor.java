@@ -26,8 +26,9 @@ public class MvnBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
         Invoker invoker = new DefaultInvoker();
         try {
-            invoker.execute(request);
-            return new ExecutionResult(0);
+            InvocationResult result = invoker.execute(request);
+
+            return new ExecutionResult(result.getExitCode(), result.getExecutionException().getMessage());
         } catch (MavenInvocationException e) {
             return new ExecutionResult(1, e.getMessage());
         }
