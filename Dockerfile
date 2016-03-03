@@ -1,10 +1,10 @@
-FROM tomcat
+FROM tomcat:8-jre8
 
 # Remove default wars
 RUN rm -rf $CATALINA_HOME/webapps/*
 
-# Add setenv.sh to set up classpath
-COPY setenv.sh $CATALINA_HOME/bin/
+# Add classpath
+RUN echo "CLASSPATH=$CATALINA_HOME/libs" >> $CATALINA_HOME/bin/setenv.sh
 
 # Copy dependencies
 COPY deploy-web/target/deploy-web/WEB-INF/lib/* $CATALINA_HOME/libs/
