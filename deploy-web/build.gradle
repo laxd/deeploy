@@ -1,0 +1,5 @@
+dependencies {
+	compile project(":deploy-core")
+	compile "org.springframework:spring-webmvc:4+"
+	compile "javax.servlet:jstl:1.2"
+}
