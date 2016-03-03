@@ -14,20 +14,20 @@ import uk.laxd.deepweb.service.BuildFlowService;
  */
 @Controller
 @RequestMapping(Constants.RequestMappings.BUILD_FLOW)
-public class ServerController {
+public class BuildFlowController {
 
     @Autowired
     private BuildFlowService buildFlowService;
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
-    public ModelAndView showServer(ModelAndView modelAndView) {
+    public ModelAndView showBuildFlow(ModelAndView modelAndView) {
         modelAndView.setViewName("buildflow/view");
 
         return modelAndView;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView listServers(ModelAndView modelAndView) {
+    public ModelAndView listBuildFlows(ModelAndView modelAndView) {
         modelAndView.setViewName("buildflow/list");
         modelAndView.addObject("buildFlows", buildFlowService.findAll());
 

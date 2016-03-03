@@ -25,4 +25,42 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <bean id="databaseType" class="com.j256.ormlite.db.MysqlDatabaseType"/>
+
+    <bean id="dataSourceConnectionSource" class="com.j256.ormlite.jdbc.DataSourceConnectionSource">
+        <constructor-arg ref="dataSource"/>
+        <constructor-arg name="databaseType" ref="databaseType"/>
+    </bean>
+
+    <!-- DAO setup -->
+    <bean id="buildFlowDao" class="com.j256.ormlite.dao.DaoManager"
+          factory-method="createDao">
+        <constructor-arg ref="dataSourceConnectionSource"/>
+        <constructor-arg name="clazz" value="uk.laxd.deepweb.model.BuildFlow"/>
+    </bean>
+
+    <bean id="buildFlowStepDao" class="com.j256.ormlite.dao.DaoManager"
+          factory-method="createDao">
+        <constructor-arg ref="dataSourceConnectionSource"/>
+        <constructor-arg name="clazz" value="uk.laxd.deepweb.model.BuildFlowStep"/>
+    </bean>
+
+    <bean id="executorArgumentDao" class="com.j256.ormlite.dao.DaoManager"
+          factory-method="createDao">
+        <constructor-arg ref="dataSourceConnectionSource"/>
+        <constructor-arg name="clazz" value="uk.laxd.deepweb.model.ExecutorArgument"/>
+    </bean>
+
+    <bean id="executorDao" class="com.j256.ormlite.dao.DaoManager"
+          factory-method="createDao">
+        <constructor-arg ref="dataSourceConnectionSource"/>
+        <constructor-arg name="clazz" value="uk.laxd.deepweb.model.Executor"/>
+    </bean>
+
+    <bean id="buildFlowStepArgumentDao" class="com.j256.ormlite.dao.DaoManager"
+          factory-method="createDao">
+        <constructor-arg name="connectionSource" ref="dataSourceConnectionSource"/>
+        <constructor-arg name="clazz" value="uk.laxd.deepweb.model.BuildFlowStepArgument"/>
+    </bean>
+
 </beans>

@@ -25,4 +25,12 @@ public class BuildFlow extends DatabaseObject {
     public void setName(String name) {
         this.name = name;
     }
+
+    public ForeignCollection<BuildFlowStep> getBuildFlowSteps() {
+        return buildFlowSteps;
+    }
+
+    public void setBuildFlowSteps(ForeignCollection<BuildFlowStep> buildFlowSteps) {
+        this.buildFlowSteps = buildFlowSteps;
+    }
 }
