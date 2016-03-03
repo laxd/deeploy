@@ -1,3 +1,4 @@
+apply plugin:'war'
 dependencies {
 	compile project(":deploy-core")
 	compile "org.springframework:spring-webmvc:4+"
