@@ -1,16 +1,19 @@
 dependencies {
-	compile project(":deploy-plugin")
-	compile "org.springframework:spring-core:4+"
-	compile "org.springframework:spring-context:4+"
-	compile "org.springframework:spring-jdbc:4+"
-	compile "mysql:mysql-connector-java:5.1.6"
-	
-	compile "com.jcraft:jsch:0.1+"
-	compile "org.eclipse.jgit:org.eclipse.jgit:4.2.0+"
-	compile "org.apache.maven.shared:maven-invoker:2.0+"
-	
-	compile "com.j256.ormlite:ormlite-core:4+"
-	compile "com.j256.ormlite:ormlite-jdbc:4+"
-	
-	testCompile "org.springframework:spring-test:4+"
+	compile (
+			project(":deploy-plugin"),
+			"org.springframework:spring-core:$springVersion",
+			"org.springframework:spring-context:$springVersion",
+			"org.springframework:spring-jdbc:$springVersion",
+
+			"mysql:mysql-connector-java:5.1.6",
+
+			"com.jcraft:jsch:0.1+",
+			"org.eclipse.jgit:org.eclipse.jgit:4.2.0+",
+			"org.apache.maven.shared:maven-invoker:2.0+",
+
+			"com.j256.ormlite:ormlite-core:4+",
+			"com.j256.ormlite:ormlite-jdbc:4+"
+    )
+
+	testCompile "org.springframework:spring-test:$springVersion"
 }

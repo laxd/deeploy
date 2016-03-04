@@ -5,12 +5,22 @@ subprojects {
 		mavenCentral()
 	}
 
+	ext {
+		springVersion = "4+"
+		slf4jVersion = "1.7+"
+	}
+
 	dependencies {
-		testCompile "junit:junit:4+"
-		testCompile "org.mockito:mockito-core:1+"
-		testCompile "com.h2database:h2:1.4+"
-		compile "org.slf4j:slf4j-api:1.7+"
-		compile "org.slf4j:slf4j-simple:1.7+"
+		testCompile(
+			"junit:junit:4+",
+			"org.mockito:mockito-core:1+",
+			"com.h2database:h2:1.4+"
+		)
+
+		compile(
+			"org.slf4j:slf4j-api:$slf4jVersion",
+			"org.slf4j:slf4j-simple:$slf4jVersion"
+		)
 	}
 
 	test {

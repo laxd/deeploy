@@ -1,6 +1,8 @@
 apply plugin:'war'
 dependencies {
-	compile project(":deploy-core")
-	compile "org.springframework:spring-webmvc:4+"
-	compile "javax.servlet:jstl:1.2"
+	compile (
+		project(":deploy-core"),
+		"org.springframework:spring-webmvc:$springVersion",
+		"javax.servlet:jstl:1.2"
+	)
 }
