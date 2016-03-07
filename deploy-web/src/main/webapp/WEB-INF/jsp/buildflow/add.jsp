@@ -8,25 +8,9 @@
 	</head>
 	<body>
 		<div class="container">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach var="buildFlow" items="${buildFlows}">
-					<tr>
-						<td><a href="/flow/${buildFlow.id}">${buildFlow.id}</a></td>
-						<td>${buildFlow.name}</td>
-					</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<div>
-				<a class="btn btn-default btn-active" href="/flow/add">New Build Flow</a>
-			</div>
+			<form method="POST" action="/flow/add">
+				<input id="name" class="form-control"/>
+				<button type="submit">Add</button>
+			</form>
 		</div>
 	</body>
-</html>

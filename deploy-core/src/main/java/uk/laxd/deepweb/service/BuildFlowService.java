@@ -9,7 +9,7 @@ import java.util.List;
  * Created by lawrence on 16/02/16.
  */
 public interface BuildFlowService {
-    BuildFlow findById(Long id) throws NotFoundException;
-
-    List<BuildFlow> findAll();
+	BuildFlow findById(Long id) throws NotFoundException;
+	List<BuildFlow> findAll();
+	void create(BuildFlow buildFlow);
 }

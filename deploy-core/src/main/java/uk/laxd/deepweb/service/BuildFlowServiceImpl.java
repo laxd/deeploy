@@ -16,24 +16,35 @@ import java.util.List;
 @Service
 public class BuildFlowServiceImpl implements BuildFlowService {
 
-    @Autowired
-    private Dao<BuildFlow, Long> buildFlowDao;
+	@Autowired
+	private Dao<BuildFlow, Long> buildFlowDao;
 
-    @Override
-    public BuildFlow findById(Long id) throws NotFoundException {
-        try {
-            return buildFlowDao.queryForId(id);
-        } catch (SQLException e) {
-            throw new NotFoundException(e);
-        }
-    }
+	@Override
+	public BuildFlow findById(Long id) throws NotFoundException {
+		try {
+			return buildFlowDao.queryForId(id);
+		} catch (SQLException e) {
+			throw new NotFoundException(e);
+		}
+	}
 
-    public List<BuildFlow> findAll() {
-        try {
-            return buildFlowDao.queryForAll();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return new ArrayList<>();
-        }
-    }
+	@Override
+	public List<BuildFlow> findAll() {
+		try {
+			return buildFlowDao.queryForAll();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return new ArrayList<>();
+		}
+	}
+
+	@Override
+	public void create(BuildFlow buildFlow) {
+		try {
+			buildFlowDao.create(buildFlow);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }
