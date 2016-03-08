@@ -7,8 +7,10 @@
 	</head>
 	<body>
 		<div class="container">
-			<p>Name</p>
-			<p th:text=${buildFlow.name}>Build Flow Name</p>
+			<dl>
+				<dt>Name</dt>
+				<dd th:text="${buildFlow.name}">Build Flow Name</dd>
+			</dl>
 		</div>
 	</body>
 </html>
