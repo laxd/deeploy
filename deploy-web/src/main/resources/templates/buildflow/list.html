@@ -16,7 +16,7 @@
 				</thead>
 				<tbody>
 					<tr th:each="buildFlow : ${buildFlows}">
-						<td><a href="./view.html" th:href="@{/flow/${buildFlow.id}}" th:text="${buildFlow.id}">123</a></td>
+						<td><a href="./view.html" th:href="@{/flow/{id}(id=${buildFlow.id})}" th:text="${buildFlow.id}">123</a></td>
 						<td th:text="${buildFlow.name}">Build Flow Name</td>
 					</tr>
 				</tbody>
