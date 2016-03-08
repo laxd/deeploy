@@ -15,14 +15,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="buidlFlow : ${buildFlows}">
-						<td><a href="./view.html" th:href="@{/flow/${buildFlow.id}}">${buildFlow.id}</a></td>
+					<tr th:each="buildFlow : ${buildFlows}">
+						<td><a href="./view.html" th:href="@{/flow/${buildFlow.id}}" th:text="${buildFlow.id}">123</a></td>
 						<td th:text="${buildFlow.name}">Build Flow Name</td>
 					</tr>
 				</tbody>
 			</table>
 			<div>
-				<a class="btn btn-default btn-active" href="/flow/add">New Build Flow</a>
+				<a class="btn btn-default btn-active" href="./add.html" th:href="@{/flow/add}">New Build Flow</a>
 			</div>
 		</div>
 	</body>
