@@ -1,0 +1,29 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></link>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="buidlFlow : ${buildFlows}">
+						<td><a href="./view.html" th:href="@{/flow/${buildFlow.id}}">${buildFlow.id}</a></td>
+						<td th:text="${buildFlow.name}">Build Flow Name</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<a class="btn btn-default btn-active" href="/flow/add">New Build Flow</a>
+			</div>
+		</div>
+	</body>
+</html>
