@@ -14,10 +14,14 @@
 						<th>Name</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody th:remove="all-but-first">
 					<tr th:each="buildFlow : ${buildFlows}">
 						<td><a href="./view.html" th:href="@{/flow/${buildFlow.id}}" th:text="${buildFlow.id}">123</a></td>
 						<td th:text="${buildFlow.name}">Build Flow Name</td>
+					</tr>
+					<tr>
+						<td><a href="./view.html">456</a></td>
+						<td>Second Build Flow Name</td>
 					</tr>
 				</tbody>
 			</table>

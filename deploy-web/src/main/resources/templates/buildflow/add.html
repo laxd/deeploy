@@ -11,12 +11,13 @@
 		<div th:replace="fragments/header :: header">
 		</div>
 		<div class="container">
-			<form method="POST" action="view.html" th:attr="action=@{/flow/add}">
+			<form method="POST" action="view.html" th:action="@{/flow/add}" th:object="${addBuildFlowDto}">
 				<label for="name">Build Flow Name</label>
-				<input id="name" class="form-control"/>
+				<input th:field="*{name}" class="form-control"/>
 				<input type="submit" value="Add" th:attr="action=#{flow.add}" class="btn btn-primary"/>
 			</form>
 		</div>
 		<div th:replace="fragments/footer :: footer">
 		</div>
 	</body>
+</html>
