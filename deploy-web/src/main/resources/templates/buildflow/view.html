@@ -6,11 +6,15 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 	<body>
+		<div th:replace="fragments/header :: header">
+		</div>
 		<div class="container">
 			<dl>
 				<dt>Name</dt>
 				<dd th:text="${buildFlow.name}">Build Flow Name</dd>
 			</dl>
+		</div>
+		<div th:replace="fragments/footer :: footer">
 		</div>
 	</body>
 </html>
