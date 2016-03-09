@@ -3,7 +3,6 @@ package uk.laxd.deepweb.service;
 import com.j256.ormlite.dao.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.laxd.deepweb.lang.NotFoundException;
 import uk.laxd.deepweb.model.BuildFlow;
 
 import java.sql.SQLException;
@@ -20,11 +19,12 @@ public class BuildFlowServiceImpl implements BuildFlowService {
 	private Dao<BuildFlow, Long> buildFlowDao;
 
 	@Override
-	public BuildFlow findById(Long id) throws NotFoundException {
+	public BuildFlow findById(Long id) {
 		try {
 			return buildFlowDao.queryForId(id);
-		} catch (SQLException e) {
-			throw new NotFoundException(e);
+		} catch(SQLException e){
+			e.printStackTrace();
+			return null;
 		}
 	}
 

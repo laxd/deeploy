@@ -3,7 +3,6 @@ package uk.laxd.deepweb.service;
 import com.j256.ormlite.dao.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.laxd.deepweb.lang.NotFoundException;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
 
 import java.sql.SQLException;
@@ -17,26 +16,27 @@ import java.util.Map;
 @Service
 public class BuildFlowStepArgumentServiceImpl implements BuildFlowStepArgumentService {
 
-    @Autowired
-    private Dao<BuildFlowStepArgument, Long> buildFlowStepArgumentDao;
+	@Autowired
+	private Dao<BuildFlowStepArgument, Long> buildFlowStepArgumentDao;
 
-    @Override
-    public BuildFlowStepArgument findById(Long id) throws NotFoundException {
-        try {
-            return buildFlowStepArgumentDao.queryForId(id);
-        } catch (SQLException e) {
-            throw new NotFoundException(e);
-        }
-    }
+	@Override
+	public BuildFlowStepArgument findById(Long id) {
+		try {
+			return buildFlowStepArgumentDao.queryForId(id);
+		} catch(SQLException e){
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-    @Override
-    public Map<String, String> createArgumentMap(Collection<BuildFlowStepArgument> argumentList) {
-        Map<String, String> map = new HashMap<>();
+	@Override
+	public Map<String, String> createArgumentMap(Collection<BuildFlowStepArgument> argumentList) {
+		Map<String, String> map = new HashMap<>();
 
-        for(BuildFlowStepArgument argument : argumentList) {
-            map.put(argument.getName(), argument.getValue());
-        }
+		for(BuildFlowStepArgument argument : argumentList) {
+			map.put(argument.getName(), argument.getValue());
+		}
 
-        return map;
-    }
+		return map;
+	}
 }
