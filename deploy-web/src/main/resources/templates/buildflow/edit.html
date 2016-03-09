@@ -11,7 +11,7 @@
 		<div th:replace="fragments/header :: header">
 		</div>
 		<div class="container">
-			<form method="POST" action="view.html" th:action="@{/flow/add}" th:object="${addBuildFlowDto}">
+			<form method="POST" action="view.html" th:action="@{/flow/add}" th:object="${buildFlow}">
 				<label for="name">Build Flow Name</label>
 				<input th:field="*{name}" class="form-control"/>
 				<input type="submit" value="Add" th:attr="action=#{flow.add}" class="btn btn-primary"/>

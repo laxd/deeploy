@@ -14,9 +14,9 @@ import uk.laxd.deepweb.lang.Constants;
 import uk.laxd.deepweb.service.BuildFlowService;
 import org.springframework.web.servlet.view.RedirectView;
 import uk.laxd.deepweb.model.BuildFlow;
-import uk.laxd.deepweb.mapper.AddBuildFlowMapper;
+import uk.laxd.deepweb.mapper.EditBuildFlowMapper;
 import uk.laxd.deepweb.mapper.ViewBuildFlowMapper;
-import uk.laxd.deepweb.dto.AddBuildFlowDto;
+import uk.laxd.deepweb.dto.EditBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowDto;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
@@ -33,7 +33,7 @@ public class BuildFlowController {
 	private BuildFlowService buildFlowService;
 
 	@Autowired
-	private AddBuildFlowMapper addBuildFlowMapper;
+	private EditBuildFlowMapper editBuildFlowMapper;
 
 	@Autowired
 	private ViewBuildFlowMapper viewBuildFlowMapper;
@@ -65,14 +65,14 @@ public class BuildFlowController {
 
 	@RequestMapping(path = "/add", method = RequestMethod.GET)
 	public ModelAndView newBuildFlow(ModelAndView modelAndView) {
-		modelAndView.setViewName("buildflow/add");
-		modelAndView.addObject("addBuildFlowDto", new AddBuildFlowDto());
+		modelAndView.setViewName("buildflow/edit");
+		modelAndView.addObject("buildFlow", new EditBuildFlowDto());
 		return modelAndView;
 	}
 
 	@RequestMapping(path = "/add", method = RequestMethod.POST)
-	public RedirectView addBuildFlow(@ModelAttribute AddBuildFlowDto addBuildFlowDto) {
-		BuildFlow buildFlow = addBuildFlowMapper.mapToEntity(addBuildFlowDto);
+	public RedirectView addBuildFlow(@ModelAttribute("buildFlow") EditBuildFlowDto editBuildFlowDto) {
+		BuildFlow buildFlow = editBuildFlowMapper.mapToEntity(editBuildFlowDto);
 
 		buildFlowService.create(buildFlow);
 

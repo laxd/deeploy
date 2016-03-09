@@ -1,6 +1,6 @@
 package uk.laxd.deepweb.dto;
 
-public class AddBuildFlowDto {
+public class EditBuildFlowDto {
 
 	private String name;
 
