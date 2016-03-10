@@ -6,3 +6,26 @@ dt {
 dt:after {
 	content: ":";
 }
+
+.build-flow-step {
+	position: relative;
+	border: 3px solid red;
+	border-radius: 50px;
+	width: 100px;
+	height: 100px;
+	margin: 10px
+}
+
+.wrapper {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+}
+
+.wrapper > * {
+	position: absolute;
+	display: block;
+	top: -50%;
+	left: -50%;
+}
