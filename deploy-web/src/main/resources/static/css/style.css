@@ -13,19 +13,13 @@ dt:after {
 	border-radius: 50px;
 	width: 100px;
 	height: 100px;
-	margin: 10px
+	margin: 10px;
 }
 
-.wrapper {
+.build-flow-step > p {
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-right: -50%;
+	transform: translateX(-50%) translateY(-50%);
 }
 
-.wrapper > * {
-	position: absolute;
-	display: block;
-	top: -50%;
-	left: -50%;
-}

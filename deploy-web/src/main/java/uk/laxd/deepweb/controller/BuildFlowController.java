@@ -1,4 +1,7 @@
 package uk.laxd.deepweb.controller;
+
+import java.util.Collection;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import uk.laxd.deepweb.lang.Constants;
-import uk.laxd.deepweb.lang.NotFoundException;
 import uk.laxd.deepweb.service.BuildFlowService;
 import org.springframework.web.servlet.view.RedirectView;
 import uk.laxd.deepweb.model.BuildFlow;
 import uk.laxd.deepweb.mapper.EditBuildFlowMapper;
 import uk.laxd.deepweb.mapper.ViewBuildFlowMapper;
+import uk.laxd.deepweb.mapper.ViewBuildFlowStepMapper;
 import uk.laxd.deepweb.dto.EditBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowDto;
+import uk.laxd.deepweb.dto.ViewBuildFlowStepDto;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 /**
@@ -39,9 +43,12 @@ public class BuildFlowController {
 	@Autowired
 	private ViewBuildFlowMapper viewBuildFlowMapper;
 
+	@Autowired
+	private ViewBuildFlowStepMapper viewBuildFlowStepMapper;
+
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ModelAndView showBuildFlow(ModelAndView modelAndView,
-			@PathVariable Long id) throws NotFoundException {
+			@PathVariable Long id) {
 		LOGGER.debug("Showing build flow {}", id);
 		modelAndView.setViewName("buildflow/view");
 		modelAndView.addObject("buildFlow", buildFlowService.findById(id));
@@ -50,7 +57,10 @@ public class BuildFlowController {
 
 		ViewBuildFlowDto viewBuildFlow = viewBuildFlowMapper.mapToDto(buildFlow);
 
+		Collection<ViewBuildFlowStepDto> steps = viewBuildFlowStepMapper.mapToDtos(buildFlow.getBuildFlowSteps());
+
 		modelAndView.addObject("buildFlow", viewBuildFlow);
+		modelAndView.addObject("steps", steps);
 
 		return modelAndView;
 	}

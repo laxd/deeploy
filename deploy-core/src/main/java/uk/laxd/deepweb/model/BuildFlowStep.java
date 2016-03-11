@@ -14,7 +14,7 @@ import java.util.Collection;
 @DatabaseTable(tableName = Constants.DB.BuildFlowStep.TABLE_NAME)
 public class BuildFlowStep extends DatabaseObject {
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "BUILD_FLOW_ID")
     private BuildFlow buildFlow;
 
     @DatabaseField(foreign = true, foreignAutoRefresh = true)

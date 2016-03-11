@@ -15,7 +15,7 @@ public class BuildFlow extends DatabaseObject {
     @DatabaseField(columnName = Constants.DB.BuildFlow.NAME_COLUMN)
     private String name;
 
-    @ForeignCollectionField
+    @ForeignCollectionField(foreignFieldName = "buildFlow")
     private ForeignCollection<BuildFlowStep> buildFlowSteps;
 
     public String getName() {

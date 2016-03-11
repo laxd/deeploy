@@ -3,6 +3,8 @@
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></link>
+		<link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"></link>
+
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	</head>
 	<body>
@@ -13,8 +15,23 @@
 				<dt>Name</dt>
 				<dd th:text="${buildFlow.name}">Build Flow Name</dd>
 			</dl>
-		</div>
-		<div th:replace="fragments/footer :: footer">
+			<div id="steps">
+				<div th:each="step : ${steps}">
+					<div th:replace="buildflowstep/buildflowstep :: build-flow-step">
+						<div class="build-flow-step">
+							<p>
+							Type
+							</p>
+						</div>
+					</div>
+				</div>
+				<div>
+					<!-- TODO: Include buildflowstep.html with + instead of text -->
+					Add new step
+				</div>
+			</div>
+			<div th:replace="fragments/footer :: footer">
+			</div>
 		</div>
 	</body>
 </html>

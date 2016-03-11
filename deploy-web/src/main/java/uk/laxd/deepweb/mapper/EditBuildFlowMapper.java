@@ -6,7 +6,7 @@ import uk.laxd.deepweb.lang.MappingNotSupportedException;
 import org.springframework.stereotype.Component;
 
 @Component
-public class EditBuildFlowMapper implements Mapper<EditBuildFlowDto, BuildFlow> {
+public class EditBuildFlowMapper extends Mapper<EditBuildFlowDto, BuildFlow> {
 	public BuildFlow mapToEntity(EditBuildFlowDto editBuildFlowDto) {
 		BuildFlow buildFlow = new BuildFlow();
 		
