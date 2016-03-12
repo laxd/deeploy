@@ -17,6 +17,7 @@ dt:after {
 }
 
 .build-flow-step > p {
+	font-weight: bold;
 	position: absolute;
 	top: 50%;
 	left: 50%;
