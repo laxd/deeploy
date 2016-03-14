@@ -1,6 +1,7 @@
 package uk.laxd.deepweb.executor;
 
 import org.apache.maven.shared.invoker.*;
+import org.springframework.stereotype.Component;
 import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
 import uk.laxd.deepweb.plugin.ExecutionResult;
 
@@ -11,6 +12,7 @@ import java.util.Map;
 /**
  * Created by lawrence on 29/02/16.
  */
+@Component
 public class MvnBuildFlowStepExecutor extends BuildFlowStepExecutor {
     @Override
     public String getType() {

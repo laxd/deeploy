@@ -15,6 +15,18 @@ public abstract class BuildFlowStepExecutor {
         // Default no-op
     }
 
+    public void register(PluginRegistry pluginRegistry) {
+        pluginRegistry.registerExecutor(this.getClass(), this.getType());
+    }
+
+    public String getConfigurationHtml() {
+        return "<html>" +
+            "<body>" +
+            "<p>This Executor has not provided any configuration options</p>" +
+            "</body>" +
+            "</html>";
+    }
+
     public abstract String getType();
 
     public abstract ExecutionResult executeWithArguments(Map<String, String> arguments);
