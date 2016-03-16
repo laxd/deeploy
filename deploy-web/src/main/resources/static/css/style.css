@@ -24,3 +24,15 @@ dt:after {
 	transform: translateX(-50%) translateY(-50%);
 }
 
+#executors {
+	width: 20%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 0;
+}
+
+.executor {
+	margin: 10px
+}

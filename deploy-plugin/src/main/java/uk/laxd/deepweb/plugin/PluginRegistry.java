@@ -7,14 +7,13 @@ import java.util.*;
  */
 public class PluginRegistry {
 
-    private Map<Class<? extends BuildFlowStepExecutor>, String> executors = new HashMap<>();
+    private Collection<PluginDefinition> plugins = new ArrayList<>();
 
-    public Collection<Class<? extends BuildFlowStepExecutor>> getExecutors() {
-        return executors.keySet();
+    public Collection<PluginDefinition> getPlugins() {
+        return plugins;
     }
 
-    public void registerExecutor(Class<? extends BuildFlowStepExecutor> executor,
-                                 String name) {
-        executors.put(executor, name);
+    public void registerExecutor(PluginDefinition pluginDefinition) {
+        plugins.add(pluginDefinition);
     }
 }

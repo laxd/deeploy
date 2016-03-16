@@ -8,6 +8,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import java.util.Collection;
+
 /**
  * Created by lawrence on 14/03/16.
  */
@@ -29,13 +31,18 @@ public class SpringPluginManager implements PluginManager, ApplicationContextAwa
             executor.register(pluginRegistry);
         }
 
-        LOGGER.info("Registered {} executors!", pluginRegistry.getExecutors().size());
+        LOGGER.info("Registered {} executors!", pluginRegistry.getPlugins().size());
     }
 
     @Override
     public void reRegisterPlugins() {
         pluginRegistry = new PluginRegistry();
         registerPlugins();
+    }
+
+    @Override
+    public Collection<PluginDefinition> getPluginDefinitions() {
+        return pluginRegistry.getPlugins();
     }
 
     @Override

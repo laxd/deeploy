@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import uk.laxd.deepweb.dto.ExecutorDefinitionDto;
 import uk.laxd.deepweb.lang.Constants;
+import uk.laxd.deepweb.mapper.ExecutorDefinitionMapper;
 import uk.laxd.deepweb.service.BuildFlowService;
 import org.springframework.web.servlet.view.RedirectView;
 import uk.laxd.deepweb.model.BuildFlow;
@@ -24,6 +26,8 @@ import uk.laxd.deepweb.dto.EditBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowStepDto;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import uk.laxd.deepweb.service.BuildFlowStepExecutorService;
+import uk.laxd.deepweb.service.BuildFlowStepExecutorServiceImpl;
 
 /**
  * Created by Lenny on 19/09/2015.
@@ -38,6 +42,9 @@ public class BuildFlowController {
 	private BuildFlowService buildFlowService;
 
 	@Autowired
+	private BuildFlowStepExecutorService executorService;
+
+	@Autowired
 	private EditBuildFlowMapper editBuildFlowMapper;
 
 	@Autowired
@@ -45,6 +52,9 @@ public class BuildFlowController {
 
 	@Autowired
 	private ViewBuildFlowStepMapper viewBuildFlowStepMapper;
+
+	@Autowired
+	private ExecutorDefinitionMapper executorDefinitionMapper;
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ModelAndView showBuildFlow(ModelAndView modelAndView,
@@ -59,8 +69,11 @@ public class BuildFlowController {
 
 		Collection<ViewBuildFlowStepDto> steps = viewBuildFlowStepMapper.mapToDtos(buildFlow.getBuildFlowSteps());
 
+		Collection<ExecutorDefinitionDto> executors = executorDefinitionMapper.mapToDtos(executorService.getPluginDefinitions());
+
 		modelAndView.addObject("buildFlow", viewBuildFlow);
 		modelAndView.addObject("steps", steps);
+		modelAndView.addObject("executors", executors);
 
 		return modelAndView;
 	}

@@ -10,8 +10,11 @@ import uk.laxd.deepweb.model.BuildFlowStepArgument;
 import uk.laxd.deepweb.model.Executor;
 import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
 import uk.laxd.deepweb.plugin.ExecutionResult;
+import uk.laxd.deepweb.plugin.PluginDefinition;
+import uk.laxd.deepweb.plugin.PluginManager;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -28,6 +31,9 @@ public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorSe
     @Autowired
     private BuildFlowStepArgumentService buildFlowStepArgumentService;
 
+    @Autowired
+    private PluginManager pluginManager;
+
     @Override
     public ExecutionResult execute(BuildFlowStep buildFlowStep) {
         Collection<BuildFlowStepArgument> argumentList = buildFlowStep.getArguments();
@@ -40,5 +46,10 @@ public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorSe
         LOGGER.info("Executing Build Flow Step {}", executor.getName());
 
         return buildFlowStepExecutor.executeWithArguments(arguments);
+    }
+
+    @Override
+    public Collection<PluginDefinition> getPluginDefinitions() {
+        return pluginManager.getPluginDefinitions();
     }
 }
