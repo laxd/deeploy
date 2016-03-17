@@ -16,18 +16,27 @@ public abstract class BuildFlowStepExecutor {
     }
 
     public void register(PluginRegistry pluginRegistry) {
-        pluginRegistry.registerExecutor(this.getClass(), this.getType());
+        pluginRegistry.registerExecutor(new PluginDefinition(this.getType(), this.getClass(), this));
     }
 
     public String getConfigurationHtml() {
         return "<html>" +
             "<body>" +
+            "<div class='modal'>" +
             "<p>This Executor has not provided any configuration options</p>" +
+            "</div>" +
             "</body>" +
             "</html>";
     }
 
     public abstract String getType();
+    // TODO: Refactor to remove ExecutorArgument/Executor
+    // tables and allow Plugins to manage them instead.
+    // Also, make getConfigurationHtml final and build
+    // inputs from getArguments();
+    
+    // TODO: Implement this!
+    // public abstract List<Argument> getArguments();
 
     public abstract ExecutionResult executeWithArguments(Map<String, String> arguments);
 

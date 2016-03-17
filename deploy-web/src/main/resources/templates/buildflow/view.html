@@ -1,45 +1,49 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></link>
-<link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"></link>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></link>
+		<link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}"></link>
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css"></link>
 
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div th:replace="fragments/header :: header">
-</div>
-<div class="container">
-	<dl>
-		<dt>Name</dt>
-		<dd th:text="${buildFlow.name}">Build Flow Name</dd>
-	</dl>
-	<div id="steps" th:each="step : ${steps}">
-		<div th:replace="buildflowstep/buildflowstep :: build-flow-step">
-			<div class="build-flow-step">
-				<p>
-				Type
-				</p>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../static/js/main.js" th:src="@{/js/main.js}"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div th:replace="fragments/header :: header">
+		</div>
+		<div class="container">
+			<dl>
+				<dt>Name</dt>
+				<dd th:text="${buildFlow.name}">Build Flow Name</dd>
+			</dl>
+			<div id="steps">
+				<div th:each="step : ${steps}">
+					<div th:replace="buildflowstep/buildflowstep :: build-flow-step">
+						<div class="build-flow-step">
+							<p>
+							Type
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div id="executors" th:each="executor : ${executors}" th:remove="all-but-first">
-		<div class="executor build-flow-step" data-type="SSH" th:data-type="${executor.type}">
-			<p th:text="${executor.name}">Executor</p>
-		</div>
-		<div class="executor build-flow-step" data-type="GIT">
-			<p th:text="${executor.name}">Executor 2</p>
-		</div>
-	</div>
-	<div th:replace="fragments/footer :: footer">
-	</div>
+			<div id="executors">
+				<div th:each="executor : ${executors}" th:remove="all-but-first">
+					<div class="executor build-flow-step" data-type="SSH" th:data-type="${executor.type}">
+						<p th:text="${executor.name}">Executor</p>
+					</div>
+					<div class="executor build-flow-step" data-type="GIT">
+						<p th:text="${executor.name}">Executor 2</p>
+					</div>
+				</div>
+			</div>
+			<div th:replace="fragments/footer :: footer">
+			</div>
 
-	<div hidden id="modal"></div>
-</div>
-</body>
+			<div id="executor-modal" class="modal fade"></div>
+		</div>
+	</body>
 </html>

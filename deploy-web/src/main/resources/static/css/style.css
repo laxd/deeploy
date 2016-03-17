@@ -7,6 +7,11 @@ dt:after {
 	content: ":";
 }
 
+#steps {
+	min-height: 100px;
+	width: 300px;
+}
+
 .build-flow-step {
 	position: relative;
 	border: 3px solid red;

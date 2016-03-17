@@ -2,6 +2,7 @@ package uk.laxd.deepweb.mapper;
 
 import org.springframework.stereotype.Component;
 import uk.laxd.deepweb.dto.ExecutorDefinitionDto;
+import uk.laxd.deepweb.lang.MappingNotSupportedException;
 import uk.laxd.deepweb.plugin.PluginDefinition;
 
 /**
@@ -11,10 +12,7 @@ import uk.laxd.deepweb.plugin.PluginDefinition;
 public class ExecutorDefinitionMapper extends Mapper<ExecutorDefinitionDto, PluginDefinition> {
     @Override
     public PluginDefinition mapToEntity(ExecutorDefinitionDto dto) {
-        PluginDefinition executor = new PluginDefinition();
-        executor.setName(dto.getName());
-
-        return executor;
+        throw new MappingNotSupportedException();
     }
 
     @Override
