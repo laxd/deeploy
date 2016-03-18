@@ -4,6 +4,7 @@ import org.apache.maven.shared.invoker.*;
 import org.springframework.stereotype.Component;
 import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
 import uk.laxd.deepweb.plugin.ExecutionResult;
+import uk.laxd.deepweb.plugin.ExecutorArgument;
 
 import java.io.File;
 import java.util.Arrays;
@@ -14,9 +15,9 @@ import java.util.Map;
  */
 @Component
 public class MvnBuildFlowStepExecutor extends BuildFlowStepExecutor {
-    @Override
-    public String getType() {
-        return "MVN";
+
+    public MvnBuildFlowStepExecutor() {
+        super("Maven");
     }
 
     @Override

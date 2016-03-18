@@ -6,6 +6,7 @@ import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.springframework.stereotype.Component;
 import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
 import uk.laxd.deepweb.plugin.ExecutionResult;
+import uk.laxd.deepweb.plugin.ExecutorArgument;
 
 import java.io.File;
 import java.util.*;
@@ -15,9 +16,11 @@ import java.util.*;
  */
 @Component
 public class GitBuildFlowStepExecutor extends BuildFlowStepExecutor {
-    @Override
-    public String getType() {
-        return "GIT";
+
+    private static final String NAME = "Git";
+
+    public GitBuildFlowStepExecutor() {
+        super(NAME, new ExecutorArgument("url"));
     }
 
     @Override

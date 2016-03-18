@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import uk.laxd.deepweb.plugin.PluginDefinition;
 import uk.laxd.deepweb.service.BuildFlowStepExecutorService;
 
@@ -20,16 +21,18 @@ public class ExecutorController {
     private BuildFlowStepExecutorService executorService;
 
     @RequestMapping(value = "modal")
-    public @ResponseBody String getModal(String type) {
+    public ModelAndView getModal(String type) {
         Collection<PluginDefinition> definitions = executorService.getPluginDefinitions();
 
+        ModelAndView modelAndView = new ModelAndView("buildflowstep/executor_config");
+
         for(PluginDefinition definition : definitions) {
-            if(type.equals(definition.getName())) {
-                return definition.getInstance().getConfigurationHtml();
+            if(type.equals(definition.getExecutor().getName())) {
+                modelAndView.addObject("arguments", definition.getExecutor().getArguments());
             }
         }
 
-        return "";
+        return modelAndView;
     }
 
 }

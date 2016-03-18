@@ -27,7 +27,7 @@ public class SpringPluginManager implements PluginManager, ApplicationContextAwa
     public void registerPlugins() {
         LOGGER.info("Registering executors ...");
         for(BuildFlowStepExecutor executor : applicationContext.getBeansOfType(BuildFlowStepExecutor.class).values()) {
-            LOGGER.debug("Registering executor '{}'", executor.getType());
+            LOGGER.debug("Registering executor '{}'", executor.getName());
             executor.register(pluginRegistry);
         }
 

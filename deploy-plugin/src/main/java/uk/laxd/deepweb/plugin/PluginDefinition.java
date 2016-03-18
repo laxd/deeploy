@@ -5,37 +5,17 @@ package uk.laxd.deepweb.plugin;
  */
 public class PluginDefinition {
 
-    private String name;
-    private Class<? extends BuildFlowStepExecutor> executorClass;
-    private BuildFlowStepExecutor instance;
+    private Executor executor;
 
-    public PluginDefinition(String name, Class<? extends BuildFlowStepExecutor> executorClass, BuildFlowStepExecutor instance) {
-        this.name = name;
-        this.executorClass = executorClass;
-        this.instance = instance;
+    public PluginDefinition(Executor executor) {
+        this.executor = executor;
     }
 
-    public String getName() {
-        return name;
+    public Executor getExecutor() {
+        return executor;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Class<? extends BuildFlowStepExecutor> getExecutorClass() {
-        return executorClass;
-    }
-
-    public void setExecutorClass(Class<? extends BuildFlowStepExecutor> executorClass) {
-        this.executorClass = executorClass;
-    }
-
-    public BuildFlowStepExecutor getInstance() {
-        return instance;
-    }
-
-    public void setInstance(BuildFlowStepExecutor instance) {
-        this.instance = instance;
+    public void setExecutor(Executor executor) {
+        this.executor = executor;
     }
 }

@@ -28,11 +28,11 @@ public class ApplicationContextBuildFlowStepExecutorFactory implements BuildFlow
         Map<String, BuildFlowStepExecutor> executorMap = applicationContext.getBeansOfType(BuildFlowStepExecutor.class);
 
         for(BuildFlowStepExecutor buildFlowStepExecutor : executorMap.values()) {
-            beans.put(buildFlowStepExecutor.getType(), buildFlowStepExecutor.getClass());
+            beans.put(buildFlowStepExecutor.getName(), buildFlowStepExecutor.getClass());
         }
     }
 
-    public BuildFlowStepExecutor createExecutor(String type) {
-        return applicationContext.getBean(beans.get(type));
+    public BuildFlowStepExecutor createExecutor(String name) {
+        return applicationContext.getBean(beans.get(name));
     }
 }

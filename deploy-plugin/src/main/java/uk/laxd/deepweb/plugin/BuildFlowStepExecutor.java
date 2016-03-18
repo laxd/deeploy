@@ -2,55 +2,61 @@ package uk.laxd.deepweb.plugin;
 
 import uk.laxd.deepweb.plugin.lang.InvalidArgumentsException;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by lawrence on 24/02/16.
  */
 public abstract class BuildFlowStepExecutor {
 
+    // TODO: Replace
+
+    private String name;
+    private Collection<ExecutorArgument> arguments;
+
+    public BuildFlowStepExecutor(String name, ExecutorArgument... arguments) {
+        this.name = name;
+        this.arguments = Arrays.asList(arguments);
+    }
+
     public void configure(PluginConfiguration pluginConfiguration){
         // Default no-op
     }
 
     public void register(PluginRegistry pluginRegistry) {
-        pluginRegistry.registerExecutor(new PluginDefinition(this.getType(), this.getClass(), this));
+        Executor executor = new Executor();
+        executor.setName(name);
+        executor.setArguments(arguments);
+        pluginRegistry.registerExecutor(new PluginDefinition(executor));
     }
 
-    public String getConfigurationHtml() {
-        return "<html>" +
-            "<body>" +
-            "<div class='modal'>" +
-            "<p>This Executor has not provided any configuration options</p>" +
-            "</div>" +
-            "</body>" +
-            "</html>";
-    }
-
-    public abstract String getType();
     // TODO: Refactor to remove ExecutorArgument/Executor
     // tables and allow Plugins to manage them instead.
     // Also, make getConfigurationHtml final and build
     // inputs from getArguments();
-    
-    // TODO: Implement this!
-    // public abstract List<Argument> getArguments();
 
     public abstract ExecutionResult executeWithArguments(Map<String, String> arguments);
 
-    public void validateArguments(Map<String, String> arguments, String... requiredArguments) {
-        List<String> invalidArguments = new ArrayList<>();
-
-        for(String requiredArgument : requiredArguments) {
-            if(!arguments.containsKey(requiredArgument)) {
-                invalidArguments.add(requiredArgument);
-            }
-        }
+    public void validateArguments(Map<String, String> arguments) {
+        List<ExecutorArgument> invalidArguments = this.arguments.stream()
+                .filter(ExecutorArgument::isMandatory)
+                .filter(arg -> !arguments.containsKey(arg.getName()))
+                .collect(Collectors.toList());
 
         if(!invalidArguments.isEmpty()) {
-            throw new InvalidArgumentsException(String.format("Missing required arguments: %s", String.join(",", invalidArguments)));
+            throw new InvalidArgumentsException(String.format("Missing required arguments: %s", invalidArguments.stream()
+                    .map(ExecutorArgument::getName)
+                    .collect(Collectors.joining(", "))));
         }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Collection<ExecutorArgument> getArguments() {
+        return arguments;
     }
 }

@@ -15,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import uk.laxd.deepweb.executor.ApplicationContextBuildFlowStepExecutorFactory;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
-import uk.laxd.deepweb.model.Executor;
+import uk.laxd.deepweb.plugin.Executor;
 import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
 import uk.laxd.deepweb.plugin.ExecutionResult;
 
