@@ -14,7 +14,7 @@ public class ViewBuildFlowStepMapper extends Mapper<ViewBuildFlowStepDto, BuildF
 	public ViewBuildFlowStepDto mapToDto(BuildFlowStep buildFlowStep) {
 		ViewBuildFlowStepDto viewBuildFlowStepDto = new ViewBuildFlowStepDto();
 
-		viewBuildFlowStepDto.setName(buildFlowStep.getExecutor().getName());
+		viewBuildFlowStepDto.setName(buildFlowStep.getExecutorName());
 
 		return viewBuildFlowStepDto;
 	}

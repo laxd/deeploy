@@ -10,4 +10,5 @@ public interface PluginManager {
     void registerPlugins();
     void reRegisterPlugins();
     Collection<PluginDefinition> getPluginDefinitions();
+		PluginDefinition getPluginDefinition(String executorName);
 }

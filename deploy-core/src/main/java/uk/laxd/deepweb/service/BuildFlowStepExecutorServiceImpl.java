@@ -22,33 +22,33 @@ import java.util.Map;
 @Service
 public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(BuildFlowStepExecutorServiceImpl.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(BuildFlowStepExecutorServiceImpl.class);
 
-    @Autowired
-    private BuildFlowStepExecutorFactory buildFlowStepExecutorFactory;
+	@Autowired
+	private BuildFlowStepExecutorFactory buildFlowStepExecutorFactory;
 
-    @Autowired
-    private BuildFlowStepArgumentService buildFlowStepArgumentService;
+	@Autowired
+	private BuildFlowStepArgumentService buildFlowStepArgumentService;
 
-    @Autowired
-    private PluginManager pluginManager;
+	@Autowired
+	private PluginManager pluginManager;
 
-    @Override
-    public ExecutionResult execute(BuildFlowStep buildFlowStep) {
-        Collection<BuildFlowStepArgument> argumentList = buildFlowStep.getArguments();
-        Map<String, String> arguments = buildFlowStepArgumentService.createArgumentMap(argumentList);
+	@Override
+	public ExecutionResult execute(BuildFlowStep buildFlowStep) {
+		Collection<BuildFlowStepArgument> argumentList = buildFlowStep.getArguments();
+		Map<String, String> arguments = buildFlowStepArgumentService.createArgumentMap(argumentList);
 
-        Executor executor = buildFlowStep.getExecutor();
+		PluginDefinition pluginDefinition = pluginManager.getPluginDefinition(buildFlowStep.getExecutorName());
 
-        BuildFlowStepExecutor buildFlowStepExecutor = buildFlowStepExecutorFactory.createExecutor(executor.getName());
+		BuildFlowStepExecutor buildFlowStepExecutor = buildFlowStepExecutorFactory.createExecutor(pluginDefinition.getExecutor().getName());
 
-        LOGGER.info("Executing Build Flow Step {}", executor.getName());
+		LOGGER.info("Executing Build Flow Step {}", pluginDefinition.getExecutor().getName());
 
-        return buildFlowStepExecutor.executeWithArguments(arguments);
-    }
+		return buildFlowStepExecutor.executeWithArguments(arguments);
+	}
 
-    @Override
-    public Collection<PluginDefinition> getPluginDefinitions() {
-        return pluginManager.getPluginDefinitions();
-    }
+	@Override
+	public Collection<PluginDefinition> getPluginDefinitions() {
+		return pluginManager.getPluginDefinitions();
+	}
 }

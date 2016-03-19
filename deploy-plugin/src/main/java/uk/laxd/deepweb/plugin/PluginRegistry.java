@@ -13,6 +13,13 @@ public class PluginRegistry {
         return plugins;
     }
 
+		public PluginDefinition getPlugin(String name) {
+			return plugins.stream()
+				.filter(def -> def.getExecutor().getName().equals(name))
+				.findFirst()
+				.get();
+		}
+
     public void registerExecutor(PluginDefinition pluginDefinition) {
         plugins.add(pluginDefinition);
     }

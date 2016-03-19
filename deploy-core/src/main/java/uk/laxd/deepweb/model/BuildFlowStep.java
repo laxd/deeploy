@@ -15,33 +15,33 @@ import java.util.Collection;
 @DatabaseTable(tableName = Constants.DB.BuildFlowStep.TABLE_NAME)
 public class BuildFlowStep extends DatabaseObject {
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "BUILD_FLOW_ID")
-    private BuildFlow buildFlow;
+	@DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "BUILD_FLOW_ID")
+	private BuildFlow buildFlow;
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true)
-    private Executor executor;
+	@DatabaseField(columnName = "EXECUTOR_NAME")
+	private String executorName;
 
-    @ForeignCollectionField()
-    private ForeignCollection<BuildFlowStepArgument> arguments;
+	@ForeignCollectionField()
+	private ForeignCollection<BuildFlowStepArgument> arguments;
 
-    public BuildFlow getBuildFlow() {
-        return buildFlow;
-    }
+	public BuildFlow getBuildFlow() {
+		return buildFlow;
+	}
 
-    public void setBuildFlow(BuildFlow buildFlow) {
-        this.buildFlow = buildFlow;
-    }
+	public void setBuildFlow(BuildFlow buildFlow) {
+		this.buildFlow = buildFlow;
+	}
 
-    public Executor getExecutor() {
-        return executor;
-    }
+	public String getExecutorName() {
+		return executorName;
+	}
 
-    public void setExecutor(Executor executor) {
-        this.executor = executor;
-    }
+	public void setExecutorName(String executorName) {
+		this.executorName = executorName;
+	} 
 
-    public Collection<BuildFlowStepArgument> getArguments() {
-        return arguments;
-    }
+	public Collection<BuildFlowStepArgument> getArguments() {
+		return arguments;
+	}
 
 }

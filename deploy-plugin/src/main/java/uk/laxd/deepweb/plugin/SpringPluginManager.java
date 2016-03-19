@@ -45,6 +45,10 @@ public class SpringPluginManager implements PluginManager, ApplicationContextAwa
         return pluginRegistry.getPlugins();
     }
 
+		public PluginDefinition getPluginDefinition(String name) {
+			return pluginRegistry.getPlugin(name);
+		}
+
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
