@@ -41,3 +41,7 @@ dt:after {
 .executor {
 	margin: 10px
 }
+
+.mandatory {
+	color: red;
+}

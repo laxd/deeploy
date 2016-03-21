@@ -1,11 +1,7 @@
 package uk.laxd.deepweb.plugin;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Created by lawrence on 26/02/16.
@@ -67,6 +63,6 @@ public class ExecutorArgument {
     }
 
     private static String ucFirst(final String input) {
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
+        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
 }

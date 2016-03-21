@@ -20,7 +20,11 @@ public class GitBuildFlowStepExecutor extends BuildFlowStepExecutor {
     private static final String NAME = "Git";
 
     public GitBuildFlowStepExecutor() {
-        super(NAME, new ExecutorArgument("url"));
+        super(NAME,
+                new ExecutorArgument("URI", "URI", true),
+                new ExecutorArgument("BRANCH", false),
+                new ExecutorArgument("USERNAME", true),
+                new ExecutorArgument("PASSWORD", true));
     }
 
     @Override

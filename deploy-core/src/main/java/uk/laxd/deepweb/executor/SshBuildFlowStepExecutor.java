@@ -21,10 +21,10 @@ public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
     public SshBuildFlowStepExecutor() {
         super("SSH",
-                new ExecutorArgument("COMMAND", "Command", true),
+                new ExecutorArgument("COMMAND", true),
                 new ExecutorArgument("USERNAME", true),
                 new ExecutorArgument("HOSTNAME"),
-                new ExecutorArgument("PORT", "Port", true));
+                new ExecutorArgument("PORT", true));
     }
 
     public ExecutionResult executeWithArguments(Map<String, String> arguments) {

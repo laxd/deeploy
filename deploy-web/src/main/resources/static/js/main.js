@@ -23,26 +23,24 @@ function showAddBuildFlowModal(event, ui) {
 
 	var url = "/executor/modal?type=" + buildFlowType;
 
-	// Do ajax to get modal
-	//$.ajax({
-	//	url: url,
-	//	success: showModalWithHtml
-	//});
+	 //Do ajax to get modal
+	$.ajax({
+		url: url,
+		success: showModalWithHtml
+	});
 
-	showModalWithHtml("<div class='modal-header'>" +
-			"<button class='close' data-dismiss='modal'>x</button>" +
-			"</div>" +
-			"<div class='modal-body'>" +
-			"Test" +
-			"</div>" +
-			"<div class='modal-footer'>Close</div>");
+	//showModalWithHtml("<div class='modal-header'>" +
+	//		"<button class='close' data-dismiss='modal'>x</button>" +
+	//		"</div>" +
+	//		"<div class='modal-body'>" +
+	//		"Test" +
+	//		"</div>" +
+	//		"<div class='modal-footer'>Close</div>");
 }
 
 function showModalWithHtml(data) {
-	var modal = $("#executor-modal");
-	modal.removeClass("hide");
-	modal.empty();
-	modal.append(data);
-	//modal.attr("hidden", false);
-	$("#executor-modal").modal();
+	var m = $("#executor-modal");
+	m.empty();
+	m.append(data);
+	m.find(".modal").modal('show');
 }
