@@ -17,7 +17,8 @@ import java.util.Map;
 public class MvnBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
     public MvnBuildFlowStepExecutor() {
-        super("Maven");
+        super("Maven",
+                "MVN");
     }
 
     @Override

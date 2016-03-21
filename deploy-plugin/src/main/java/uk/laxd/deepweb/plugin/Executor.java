@@ -9,6 +9,7 @@ import java.util.Collection;
 public class Executor {
 
     private String name;
+    private String displayName;
     private Collection<ExecutorArgument> arguments;
 
     public String getName() {
@@ -17,6 +18,14 @@ public class Executor {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public Collection<ExecutorArgument> getArguments() {

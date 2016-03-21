@@ -21,6 +21,7 @@ public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
     public SshBuildFlowStepExecutor() {
         super("SSH",
+                "SSH",
                 new ExecutorArgument("COMMAND", true),
                 new ExecutorArgument("USERNAME", true),
                 new ExecutorArgument("HOSTNAME"),

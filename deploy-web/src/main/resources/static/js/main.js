@@ -28,14 +28,6 @@ function showAddBuildFlowModal(event, ui) {
 		url: url,
 		success: showModalWithHtml
 	});
-
-	//showModalWithHtml("<div class='modal-header'>" +
-	//		"<button class='close' data-dismiss='modal'>x</button>" +
-	//		"</div>" +
-	//		"<div class='modal-body'>" +
-	//		"Test" +
-	//		"</div>" +
-	//		"<div class='modal-footer'>Close</div>");
 }
 
 function showModalWithHtml(data) {

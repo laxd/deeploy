@@ -5,7 +5,7 @@ package uk.laxd.deepweb.dto;
  */
 public class ExecutorDefinitionDto {
     private String name;
-    private String type;
+    private String displayName;
 
     public String getName() {
         return name;
@@ -15,11 +15,11 @@ public class ExecutorDefinitionDto {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public String getDisplayName() {
+        return displayName;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 }

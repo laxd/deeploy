@@ -32,11 +32,11 @@
 			</div>
 			<div id="executors">
 				<div th:each="executor : ${executors}" th:remove="all-but-first">
-					<div class="executor build-flow-step" data-type="SSH" th:data-type="${executor.type}">
-						<p th:text="${executor.name}">Executor</p>
+					<div class="executor build-flow-step" data-type="SSH" th:attr="data-type=${executor.name}">
+						<p th:text="${executor.displayName}">Executor</p>
 					</div>
 					<div class="executor build-flow-step" data-type="GIT">
-						<p th:text="${executor.name}">Executor 2</p>
+						<p>Executor 2</p>
 					</div>
 				</div>
 			</div>

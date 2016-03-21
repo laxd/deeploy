@@ -19,6 +19,7 @@ public class ExecutorDefinitionMapper extends Mapper<ExecutorDefinitionDto, Plug
     public ExecutorDefinitionDto mapToDto(PluginDefinition entity) {
         ExecutorDefinitionDto dto = new ExecutorDefinitionDto();
         dto.setName(entity.getExecutor().getName());
+        dto.setDisplayName(entity.getExecutor().getDisplayName());
 
         return dto;
     }

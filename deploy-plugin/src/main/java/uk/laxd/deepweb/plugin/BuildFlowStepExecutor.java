@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
  */
 public abstract class BuildFlowStepExecutor {
 
-    // TODO: Replace
-
     private String name;
+    private String displayName;
     private Collection<ExecutorArgument> arguments;
 
-    public BuildFlowStepExecutor(String name, ExecutorArgument... arguments) {
+    public BuildFlowStepExecutor(String name, String displayName, ExecutorArgument... arguments) {
         this.name = name;
+        this.displayName = displayName;
         this.arguments = Arrays.asList(arguments);
     }
 
@@ -28,14 +28,10 @@ public abstract class BuildFlowStepExecutor {
     public void register(PluginRegistry pluginRegistry) {
         Executor executor = new Executor();
         executor.setName(name);
+        executor.setDisplayName(displayName);
         executor.setArguments(arguments);
         pluginRegistry.registerExecutor(new PluginDefinition(executor));
     }
-
-    // TODO: Refactor to remove ExecutorArgument/Executor
-    // tables and allow Plugins to manage them instead.
-    // Also, make getConfigurationHtml final and build
-    // inputs from getArguments();
 
     public abstract ExecutionResult executeWithArguments(Map<String, String> arguments);
 

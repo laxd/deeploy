@@ -17,10 +17,9 @@ import java.util.*;
 @Component
 public class GitBuildFlowStepExecutor extends BuildFlowStepExecutor {
 
-    private static final String NAME = "Git";
-
     public GitBuildFlowStepExecutor() {
-        super(NAME,
+        super("GIT",
+                "Git",
                 new ExecutorArgument("URI", "URI", true),
                 new ExecutorArgument("BRANCH", false),
                 new ExecutorArgument("USERNAME", true),
