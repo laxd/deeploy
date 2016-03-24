@@ -1,21 +1,21 @@
 package uk.laxd.deepweb.controller;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import uk.laxd.deepweb.dto.ExecutorDefinitionDto;
 import uk.laxd.deepweb.lang.Constants;
 import uk.laxd.deepweb.mapper.ExecutorDefinitionMapper;
+import uk.laxd.deepweb.model.BuildFlowStep;
+import uk.laxd.deepweb.model.BuildFlowStepArgument;
 import uk.laxd.deepweb.service.BuildFlowService;
 import org.springframework.web.servlet.view.RedirectView;
 import uk.laxd.deepweb.model.BuildFlow;
@@ -25,9 +25,7 @@ import uk.laxd.deepweb.mapper.ViewBuildFlowStepMapper;
 import uk.laxd.deepweb.dto.EditBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowStepDto;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import uk.laxd.deepweb.service.BuildFlowStepExecutorService;
-import uk.laxd.deepweb.service.BuildFlowStepExecutorServiceImpl;
 
 /**
  * Created by Lenny on 19/09/2015.
@@ -103,5 +101,26 @@ public class BuildFlowController {
 
 		RedirectView redirectView = new RedirectView("/flow/" + buildFlow.getId());
 		return redirectView;
+	}
+
+	@RequestMapping(value = "{id}/step/add")
+	public void add(@PathVariable Long id, @RequestParam Map<String, String> arguments, String type) {
+		BuildFlow buildFlow = buildFlowService.findById(id);
+
+		// TODO: Push this down to service
+		BuildFlowStep buildFlowStep = new BuildFlowStep();
+		buildFlowStep.setExecutorName(type);
+
+		for(String key : arguments.keySet()) {
+			String value = arguments.get(key);
+			BuildFlowStepArgument buildFlowStepArgument = new BuildFlowStepArgument();
+			buildFlowStepArgument.setName(key);
+			buildFlowStepArgument.setValue(value);
+			buildFlowStepArgument.setBuildFlowStep(buildFlowStep);
+
+			buildFlowStep.getArguments().add(buildFlowStepArgument);
+		}
+
+		buildFlow.getBuildFlowSteps().add(buildFlowStep);
 	}
 }
