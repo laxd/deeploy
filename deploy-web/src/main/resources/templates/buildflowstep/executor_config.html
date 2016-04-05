@@ -28,13 +28,17 @@
                     No configuration options specified.
                 </div>
 
+                <div class="hidden">
+                    <input id="type" name="type" th:value="${type}"/>
+                </div>
+
                 <div th:each="argument : ${arguments}">
                     <div class="form-group">
                         <label for="argument" th:for="${argument.name}">
                             <span th:text="${argument.displayName}">Argument</span>
                             <span th:if="${argument.mandatory} == true" class="mandatory">*</span>
                         </label>
-                        <input id="argument" th:id="${argument.name}" class="form-control"/>
+                        <input id="argument" th:id="${argument.name}" th:name="${argument.name}" class="form-control executor-argument"/>
                     </div>
                 </div>
             </div>

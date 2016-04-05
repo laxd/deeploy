@@ -14,6 +14,26 @@ $(document).ready(function() {
 		helper: "clone"
 	}).disableSelection();
 
+	$("#executor-modal").on("click", "#save-executor", function() {
+		// TODO get id and use that instead.
+		var url = "/flow/1/step/add/" + $("#type").val();
+
+		var data = $(".executor-argument").serialize();
+
+		$.ajax({
+			type: 'POST',
+			url: url,
+			data: data,
+			success: function() {
+				console.log("Added step!");
+				$(".modal").modal('hide');
+			},
+			fail: function() {
+				console.log("Failed to add step!");
+			}
+		});
+	});
+
 });
 
 function showAddBuildFlowModal(event, ui) {

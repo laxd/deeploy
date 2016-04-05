@@ -54,11 +54,10 @@ public class BuildFlowStepExecutorServiceImplJUnitTest {
 
         Executor executor = new Executor();
         executor.setName("Test Executor");
-        executor.setType("TEST");
         executorDao.create(executor);
 
         BuildFlowStep buildFlowStep = new BuildFlowStep();
-        buildFlowStep.setExecutor(executor);
+        buildFlowStep.setExecutorName("Test Executor");
         buildFlowStepDao.create(buildFlowStep);
 
         BuildFlowStepArgument buildFlowStepArgument1 = new BuildFlowStepArgument();
@@ -74,17 +73,6 @@ public class BuildFlowStepExecutorServiceImplJUnitTest {
         buildFlowStepArgumentDao.create(buildFlowStepArgument2);
 
         DefaultListableBeanFactory parentBeanFactory = new DefaultListableBeanFactory();
-        parentBeanFactory.registerSingleton("TEST", new BuildFlowStepExecutor() {
-            @Override
-            public String getType() {
-                return "TEST";
-            }
-
-            @Override
-            public ExecutionResult executeWithArguments(Map<String, String> arguments) {
-                return null;
-            }
-        });
 
         GenericApplicationContext parentContext =
                 new GenericApplicationContext(parentBeanFactory);

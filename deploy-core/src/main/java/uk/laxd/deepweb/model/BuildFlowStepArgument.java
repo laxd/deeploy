@@ -16,7 +16,7 @@ public class BuildFlowStepArgument extends DatabaseObject {
     @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.VALUE_COLUMN)
     private String value;
 
-    @DatabaseField(foreign = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "BUILD_FLOW_STEP_ID")
     private BuildFlowStep buildFlowStep;
 
     public String getValue() {

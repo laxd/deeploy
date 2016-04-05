@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,6 +27,7 @@ import uk.laxd.deepweb.dto.EditBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowStepDto;
 import uk.laxd.deepweb.service.BuildFlowStepExecutorService;
+import uk.laxd.deepweb.service.BuildFlowStepService;
 
 /**
  * Created by Lenny on 19/09/2015.
@@ -38,6 +40,9 @@ public class BuildFlowController {
 
 	@Autowired
 	private BuildFlowService buildFlowService;
+
+	@Autowired
+	private BuildFlowStepService buildFlowStepService;
 
 	@Autowired
 	private BuildFlowStepExecutorService executorService;
@@ -103,13 +108,16 @@ public class BuildFlowController {
 		return redirectView;
 	}
 
-	@RequestMapping(value = "{id}/step/add")
-	public void add(@PathVariable Long id, @RequestParam Map<String, String> arguments, String type) {
+	@RequestMapping(value = "{id}/step/add/{type}")
+	@ResponseStatus(value = HttpStatus.OK)
+	public void add(@PathVariable Long id, @RequestParam Map<String, String> arguments, @PathVariable String type) {
 		BuildFlow buildFlow = buildFlowService.findById(id);
 
 		// TODO: Push this down to service
 		BuildFlowStep buildFlowStep = new BuildFlowStep();
 		buildFlowStep.setExecutorName(type);
+
+		buildFlowStepService.create(buildFlowStep);
 
 		for(String key : arguments.keySet()) {
 			String value = arguments.get(key);

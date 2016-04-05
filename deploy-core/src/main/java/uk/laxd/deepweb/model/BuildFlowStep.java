@@ -5,7 +5,6 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import uk.laxd.deepweb.lang.Constants;
-import uk.laxd.deepweb.plugin.Executor;
 
 import java.util.Collection;
 
@@ -21,7 +20,7 @@ public class BuildFlowStep extends DatabaseObject {
 	@DatabaseField(columnName = "EXECUTOR_NAME")
 	private String executorName;
 
-	@ForeignCollectionField()
+	@ForeignCollectionField(foreignFieldName = "buildFlowStep", eager = true)
 	private ForeignCollection<BuildFlowStepArgument> arguments;
 
 	public BuildFlow getBuildFlow() {

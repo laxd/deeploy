@@ -25,6 +25,8 @@ public class ExecutorController {
 
         ModelAndView modelAndView = new ModelAndView("buildflowstep/executor_config");
 
+        modelAndView.addObject("type", type);
+
         for(PluginDefinition definition : definitions) {
             if(type.equals(definition.getExecutor().getName())) {
                 // TODO: Map to DTO
