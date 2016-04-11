@@ -1,0 +1,16 @@
+version: '2'
+services: 
+  db:
+    image: mysql
+    environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=DEEPLOY
+    expose:
+    - "3306"
+  web:
+    build:
+      context: ./deploy-web
+    ports: 
+    - "8090:8090"
+    links:
+    - db
