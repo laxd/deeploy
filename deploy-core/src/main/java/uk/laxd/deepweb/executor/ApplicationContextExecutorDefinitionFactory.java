@@ -13,7 +13,7 @@ import java.util.Map;
  * Created by lawrence on 25/02/16.
  */
 @Component
-public class ApplicationContextBuildFlowStepExecutorFactory implements BuildFlowStepExecutorFactory, ApplicationContextAware {
+public class ApplicationContextExecutorDefinitionFactory implements ExecutorDefinitionFactory, ApplicationContextAware {
 
     private Map<String, Class<? extends ExecutorDefinition>> beans;
 

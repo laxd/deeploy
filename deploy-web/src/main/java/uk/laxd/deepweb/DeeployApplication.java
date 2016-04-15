@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
-import uk.laxd.deepweb.plugin.PluginManager;
+import uk.laxd.deepweb.plugin.ExecutorManager;
 
 import javax.annotation.PostConstruct;
 
@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 public class DeeployApplication {
 
 	@Autowired
-	private PluginManager pluginManager;
+	private ExecutorManager executorManager;
 	
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(DeeployApplication.class, args);
@@ -21,6 +21,6 @@ public class DeeployApplication {
 
 	@PostConstruct
 	public void init() {
-		pluginManager.registerPlugins();
+		executorManager.registerExecutors();
 	}
 }

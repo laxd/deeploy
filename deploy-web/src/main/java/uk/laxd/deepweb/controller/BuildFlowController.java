@@ -72,7 +72,7 @@ public class BuildFlowController {
 
 		Collection<ViewBuildFlowStepDto> steps = viewBuildFlowStepMapper.mapToDtos(buildFlow.getBuildFlowSteps());
 
-		Collection<ExecutorDefinitionDto> executors = executorDefinitionMapper.mapToDtos(executorService.getPluginDefinitions());
+		Collection<ExecutorDefinitionDto> executors = executorDefinitionMapper.mapToDtos(executorService.getExecutorDefinitions());
 
 		modelAndView.addObject("buildFlow", viewBuildFlow);
 		modelAndView.addObject("steps", steps);

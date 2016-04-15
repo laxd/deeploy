@@ -5,6 +5,6 @@ import uk.laxd.deepweb.plugin.ExecutorDefinition;
 /**
  * Created by lawrence on 25/02/16.
  */
-public interface BuildFlowStepExecutorFactory {
+public interface ExecutorDefinitionFactory {
     ExecutorDefinition createExecutor(String type);
 }

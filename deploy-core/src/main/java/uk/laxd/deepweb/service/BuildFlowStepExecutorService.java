@@ -2,7 +2,7 @@ package uk.laxd.deepweb.service;
 
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.plugin.ExecutionResult;
-import uk.laxd.deepweb.plugin.PluginDefinition;
+import uk.laxd.deepweb.plugin.ExecutorDefinition;
 
 import java.util.Collection;
 
@@ -13,5 +13,5 @@ public interface BuildFlowStepExecutorService {
 
     ExecutionResult execute(BuildFlowStep buildFlowStep);
 
-    Collection<PluginDefinition> getPluginDefinitions();
+    Collection<ExecutorDefinition> getExecutorDefinitions();
 }

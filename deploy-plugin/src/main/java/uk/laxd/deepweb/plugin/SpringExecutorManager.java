@@ -15,38 +15,39 @@ import java.util.Collection;
  */
 @Component
 @Scope("singleton")
-public class SpringPluginManager implements PluginManager, ApplicationContextAware {
+public class SpringExecutorManager implements ExecutorManager, ApplicationContextAware {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SpringPluginManager.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SpringExecutorManager.class);
 
     private ApplicationContext applicationContext;
 
-    private PluginRegistry pluginRegistry = new PluginRegistry();
+    private ExecutorRegistry executorRegistry = new ExecutorRegistry();
 
     @Override
-    public void registerPlugins() {
+    public void registerExecutors() {
         LOGGER.info("Registering executors ...");
         for(ExecutorDefinition executor : applicationContext.getBeansOfType(ExecutorDefinition.class).values()) {
             LOGGER.debug("Registering executor '{}'", executor.getName());
-            executor.register(pluginRegistry);
+
+            executorRegistry.register(executor);
         }
 
-        LOGGER.info("Registered {} executors!", pluginRegistry.getPlugins().size());
+        LOGGER.info("Registered {} executors!", executorRegistry.getExecutors().size());
     }
 
     @Override
-    public void reRegisterPlugins() {
-        pluginRegistry = new PluginRegistry();
-        registerPlugins();
+    public void reRegisterExecutors() {
+        executorRegistry = new ExecutorRegistry();
+        registerExecutors();
     }
 
     @Override
-    public Collection<PluginDefinition> getPluginDefinitions() {
-        return pluginRegistry.getPlugins();
+    public Collection<ExecutorDefinition> getExecutorDefinitions() {
+        return executorRegistry.getExecutors();
     }
 
-    public PluginDefinition getPluginDefinition(String name) {
-			return pluginRegistry.getPlugin(name);
+    public ExecutorDefinition getExecutorDefinition(String name) {
+			return executorRegistry.getExecutor(name);
 		}
 
     @Override

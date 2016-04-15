@@ -17,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 public class ApplicationContextExecutorDefinitionFactoryJUnitTest {
 
     @Autowired
-    private ApplicationContextBuildFlowStepExecutorFactory buildFlowStepExecutorFactory;
+    private ApplicationContextExecutorDefinitionFactory buildFlowStepExecutorFactory;
 
     @Test
     public void testCreateByType() throws Exception {
