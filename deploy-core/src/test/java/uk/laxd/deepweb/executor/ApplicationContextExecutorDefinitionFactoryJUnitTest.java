@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
+import uk.laxd.deepweb.plugin.ExecutorDefinition;
 
 import static org.junit.Assert.assertTrue;
 
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/test-context.xml")
-public class ApplicationContextBuildFlowStepExecutorFactoryJUnitTest {
+public class ApplicationContextExecutorDefinitionFactoryJUnitTest {
 
     @Autowired
     private ApplicationContextBuildFlowStepExecutorFactory buildFlowStepExecutorFactory;
@@ -23,8 +23,8 @@ public class ApplicationContextBuildFlowStepExecutorFactoryJUnitTest {
     public void testCreateByType() throws Exception {
         String type = "SSH";
         
-        BuildFlowStepExecutor executor = buildFlowStepExecutorFactory.createExecutor(type);
+        ExecutorDefinition executor = buildFlowStepExecutorFactory.createExecutor(type);
 
-        assertTrue(executor instanceof SshBuildFlowStepExecutor);
+        assertTrue(executor instanceof SshExecutorDefinition);
     }
 }

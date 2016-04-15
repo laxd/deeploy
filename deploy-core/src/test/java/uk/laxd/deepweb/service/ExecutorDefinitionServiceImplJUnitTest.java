@@ -16,17 +16,13 @@ import uk.laxd.deepweb.executor.ApplicationContextBuildFlowStepExecutorFactory;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
 import uk.laxd.deepweb.plugin.Executor;
-import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
-import uk.laxd.deepweb.plugin.ExecutionResult;
-
-import java.util.Map;
 
 /**
  * Created by lawrence on 02/03/16.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/test-context.xml")
-public class BuildFlowStepExecutorServiceImplJUnitTest {
+public class ExecutorDefinitionServiceImplJUnitTest {
 
     @Autowired
     private ConnectionSource connectionSource;

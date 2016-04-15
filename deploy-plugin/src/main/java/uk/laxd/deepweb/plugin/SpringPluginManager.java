@@ -26,7 +26,7 @@ public class SpringPluginManager implements PluginManager, ApplicationContextAwa
     @Override
     public void registerPlugins() {
         LOGGER.info("Registering executors ...");
-        for(BuildFlowStepExecutor executor : applicationContext.getBeansOfType(BuildFlowStepExecutor.class).values()) {
+        for(ExecutorDefinition executor : applicationContext.getBeansOfType(ExecutorDefinition.class).values()) {
             LOGGER.debug("Registering executor '{}'", executor.getName());
             executor.register(pluginRegistry);
         }
@@ -45,7 +45,7 @@ public class SpringPluginManager implements PluginManager, ApplicationContextAwa
         return pluginRegistry.getPlugins();
     }
 
-		public PluginDefinition getPluginDefinition(String name) {
+    public PluginDefinition getPluginDefinition(String name) {
 			return pluginRegistry.getPlugin(name);
 		}
 

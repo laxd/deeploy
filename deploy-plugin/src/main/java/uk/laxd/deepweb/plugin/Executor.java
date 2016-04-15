@@ -10,7 +10,7 @@ public class Executor {
 
     private String name;
     private String displayName;
-    private Collection<ExecutorArgument> arguments;
+    private Collection<ExecutorParameter> arguments;
 
     public String getName() {
         return name;
@@ -28,15 +28,15 @@ public class Executor {
         this.displayName = displayName;
     }
 
-    public Collection<ExecutorArgument> getArguments() {
+    public Collection<ExecutorParameter> getArguments() {
         return arguments;
     }
 
-    public void setArguments(Collection<ExecutorArgument> arguments) {
+    public void setArguments(Collection<ExecutorParameter> arguments) {
         this.arguments = arguments;
     }
 
-    public void setArguments(ExecutorArgument... arguments) {
+    public void setArguments(ExecutorParameter... arguments) {
         this.arguments = Arrays.asList(arguments);
     }
 }

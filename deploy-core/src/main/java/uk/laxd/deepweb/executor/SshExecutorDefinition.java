@@ -5,9 +5,9 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.springframework.stereotype.Component;
-import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
+import uk.laxd.deepweb.plugin.ExecutorDefinition;
 import uk.laxd.deepweb.plugin.ExecutionResult;
-import uk.laxd.deepweb.plugin.ExecutorArgument;
+import uk.laxd.deepweb.plugin.ExecutorParameter;
 
 import java.util.Map;
 import java.util.Properties;
@@ -16,16 +16,16 @@ import java.util.Properties;
  * Created by lawrence on 24/02/16.
  */
 @Component
-public class SshBuildFlowStepExecutor extends BuildFlowStepExecutor {
+public class SshExecutorDefinition extends ExecutorDefinition {
 
 
-    public SshBuildFlowStepExecutor() {
+    public SshExecutorDefinition() {
         super("SSH",
                 "SSH",
-                new ExecutorArgument("COMMAND", true),
-                new ExecutorArgument("USERNAME", true),
-                new ExecutorArgument("HOSTNAME"),
-                new ExecutorArgument("PORT", true));
+                new ExecutorParameter("COMMAND", true),
+                new ExecutorParameter("USERNAME", true),
+                new ExecutorParameter("HOSTNAME"),
+                new ExecutorParameter("PORT", true));
     }
 
     public ExecutionResult executeWithArguments(Map<String, String> arguments) {

@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 /**
  * Created by lawrence on 26/02/16.
  */
-public class ExecutorArgument {
+public class ExecutorParameter {
 
     private String name;
 
@@ -14,19 +14,19 @@ public class ExecutorArgument {
 
     private boolean mandatory;
 
-    public ExecutorArgument(String name) {
+    public ExecutorParameter(String name) {
         this(name, toDisplayName(name));
     }
 
-    public ExecutorArgument(String name, String displayName) {
+    public ExecutorParameter(String name, String displayName) {
         this(name, displayName, true);
     }
 
-    public ExecutorArgument(String name, boolean mandatory) {
+    public ExecutorParameter(String name, boolean mandatory) {
         this(name, toDisplayName(name), mandatory);
     }
 
-    public ExecutorArgument(String name, String displayName, boolean mandatory) {
+    public ExecutorParameter(String name, String displayName, boolean mandatory) {
         this.name = name;
         this.displayName = displayName;
         this.mandatory = mandatory;
@@ -58,7 +58,7 @@ public class ExecutorArgument {
 
     private static String toDisplayName(String name) {
         return Arrays.stream(name.split("_"))
-        .map(ExecutorArgument::ucFirst)
+        .map(ExecutorParameter::ucFirst)
         .collect(Collectors.joining(" "));
     }
 

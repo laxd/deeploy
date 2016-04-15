@@ -3,19 +3,18 @@ package uk.laxd.deepweb.plugin;
 import uk.laxd.deepweb.plugin.lang.InvalidArgumentsException;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
  * Created by lawrence on 24/02/16.
  */
-public abstract class BuildFlowStepExecutor {
+public abstract class ExecutorDefinition {
 
     private String name;
     private String displayName;
-    private Collection<ExecutorArgument> arguments;
+    private Collection<ExecutorParameter> arguments;
 
-    public BuildFlowStepExecutor(String name, String displayName, ExecutorArgument... arguments) {
+    public ExecutorDefinition(String name, String displayName, ExecutorParameter... arguments) {
         this.name = name;
         this.displayName = displayName;
         this.arguments = Arrays.asList(arguments);
@@ -35,15 +34,15 @@ public abstract class BuildFlowStepExecutor {
 
     public abstract ExecutionResult executeWithArguments(Map<String, String> arguments);
 
-    public void validateArguments(Map<String, String> arguments) {
-        List<ExecutorArgument> invalidArguments = this.arguments.stream()
-                .filter(ExecutorArgument::isMandatory)
-                .filter(arg -> !arguments.containsKey(arg.getName()))
+    public void validateParameters(Map<String, String> parameters) {
+        List<ExecutorParameter> invalidArguments = this.arguments.stream()
+                .filter(ExecutorParameter::isMandatory)
+                .filter(arg -> !parameters.containsKey(arg.getName()))
                 .collect(Collectors.toList());
 
         if(!invalidArguments.isEmpty()) {
-            throw new InvalidArgumentsException(String.format("Missing required arguments: %s", invalidArguments.stream()
-                    .map(ExecutorArgument::getName)
+            throw new InvalidArgumentsException(String.format("Missing required parameters: %s", invalidArguments.stream()
+                    .map(ExecutorParameter::getName)
                     .collect(Collectors.joining(", "))));
         }
     }
@@ -52,7 +51,7 @@ public abstract class BuildFlowStepExecutor {
         return name;
     }
 
-    public Collection<ExecutorArgument> getArguments() {
+    public Collection<ExecutorParameter> getArguments() {
         return arguments;
     }
 }

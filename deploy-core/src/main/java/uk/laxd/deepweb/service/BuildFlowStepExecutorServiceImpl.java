@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 import uk.laxd.deepweb.executor.BuildFlowStepExecutorFactory;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
-import uk.laxd.deepweb.plugin.Executor;
-import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
+import uk.laxd.deepweb.plugin.ExecutorDefinition;
 import uk.laxd.deepweb.plugin.ExecutionResult;
 import uk.laxd.deepweb.plugin.PluginDefinition;
 import uk.laxd.deepweb.plugin.PluginManager;
@@ -40,11 +39,11 @@ public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorSe
 
 		PluginDefinition pluginDefinition = pluginManager.getPluginDefinition(buildFlowStep.getExecutorName());
 
-		BuildFlowStepExecutor buildFlowStepExecutor = buildFlowStepExecutorFactory.createExecutor(pluginDefinition.getExecutor().getName());
+		ExecutorDefinition executorDefinition = buildFlowStepExecutorFactory.createExecutor(pluginDefinition.getExecutor().getName());
 
 		LOGGER.info("Executing Build Flow Step {}", pluginDefinition.getExecutor().getName());
 
-		return buildFlowStepExecutor.executeWithArguments(arguments);
+		return executorDefinition.executeWithArguments(arguments);
 	}
 
 	@Override

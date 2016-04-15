@@ -4,7 +4,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import uk.laxd.deepweb.plugin.BuildFlowStepExecutor;
+import uk.laxd.deepweb.plugin.ExecutorDefinition;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +15,7 @@ import java.util.Map;
 @Component
 public class ApplicationContextBuildFlowStepExecutorFactory implements BuildFlowStepExecutorFactory, ApplicationContextAware {
 
-    private Map<String, Class<? extends BuildFlowStepExecutor>> beans;
+    private Map<String, Class<? extends ExecutorDefinition>> beans;
 
     private ApplicationContext applicationContext;
 
@@ -25,14 +25,14 @@ public class ApplicationContextBuildFlowStepExecutorFactory implements BuildFlow
         // Update bean definitions
         beans = new HashMap<>();
 
-        Map<String, BuildFlowStepExecutor> executorMap = applicationContext.getBeansOfType(BuildFlowStepExecutor.class);
+        Map<String, ExecutorDefinition> executorMap = applicationContext.getBeansOfType(ExecutorDefinition.class);
 
-        for(BuildFlowStepExecutor buildFlowStepExecutor : executorMap.values()) {
-            beans.put(buildFlowStepExecutor.getName(), buildFlowStepExecutor.getClass());
+        for(ExecutorDefinition executorDefinition : executorMap.values()) {
+            beans.put(executorDefinition.getName(), executorDefinition.getClass());
         }
     }
 
-    public BuildFlowStepExecutor createExecutor(String name) {
+    public ExecutorDefinition createExecutor(String name) {
         return applicationContext.getBean(beans.get(name));
     }
 }
