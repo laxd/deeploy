@@ -2,8 +2,6 @@ package uk.laxd.deepweb.executor;
 
 import org.apache.maven.shared.invoker.*;
 import org.springframework.stereotype.Component;
-import uk.laxd.deepweb.plugin.ExecutorDefinition;
-import uk.laxd.deepweb.plugin.ExecutionResult;
 
 import java.io.File;
 import java.util.Arrays;

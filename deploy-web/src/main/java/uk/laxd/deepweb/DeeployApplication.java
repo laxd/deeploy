@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
-import uk.laxd.deepweb.plugin.ExecutorManager;
+import uk.laxd.deepweb.executor.ExecutorManager;
 
 import javax.annotation.PostConstruct;
 

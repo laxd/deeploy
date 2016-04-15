@@ -4,7 +4,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-import uk.laxd.deepweb.plugin.ExecutorDefinition;
 
 import java.util.HashMap;
 import java.util.Map;

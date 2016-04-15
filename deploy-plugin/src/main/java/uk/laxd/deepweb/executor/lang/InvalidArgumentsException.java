@@ -1,4 +1,4 @@
-package uk.laxd.deepweb.plugin.lang;
+package uk.laxd.deepweb.executor.lang;
 
 /**
  * Created by lawrence on 29/02/16.

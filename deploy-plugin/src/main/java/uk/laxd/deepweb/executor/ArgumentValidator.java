@@ -1,6 +1,6 @@
-package uk.laxd.deepweb.plugin;
+package uk.laxd.deepweb.executor;
 
-import uk.laxd.deepweb.plugin.lang.InvalidArgumentsException;
+import uk.laxd.deepweb.executor.lang.InvalidArgumentsException;
 
 import java.util.List;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package uk.laxd.deepweb.plugin;
+package uk.laxd.deepweb.executor;
 
 import java.util.Collection;
 

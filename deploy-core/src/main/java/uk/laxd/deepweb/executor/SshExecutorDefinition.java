@@ -5,9 +5,6 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import org.springframework.stereotype.Component;
-import uk.laxd.deepweb.plugin.ExecutorDefinition;
-import uk.laxd.deepweb.plugin.ExecutionResult;
-import uk.laxd.deepweb.plugin.ExecutorParameter;
 
 import java.util.Map;
 import java.util.Properties;

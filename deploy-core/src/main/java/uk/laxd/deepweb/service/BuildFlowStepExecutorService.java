@@ -1,8 +1,8 @@
 package uk.laxd.deepweb.service;
 
 import uk.laxd.deepweb.model.BuildFlowStep;
-import uk.laxd.deepweb.plugin.ExecutionResult;
-import uk.laxd.deepweb.plugin.ExecutorDefinition;
+import uk.laxd.deepweb.executor.ExecutionResult;
+import uk.laxd.deepweb.executor.ExecutorDefinition;
 
 import java.util.Collection;
 

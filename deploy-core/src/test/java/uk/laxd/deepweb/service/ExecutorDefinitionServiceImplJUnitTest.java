@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import uk.laxd.deepweb.executor.ExecutorDefinitionFactory;
 import uk.laxd.deepweb.model.BuildFlowStep;
-import uk.laxd.deepweb.plugin.*;
+import uk.laxd.deepweb.executor.*;
 
 import static org.mockito.Matchers.anyMap;
 import static org.mockito.Mockito.mock;

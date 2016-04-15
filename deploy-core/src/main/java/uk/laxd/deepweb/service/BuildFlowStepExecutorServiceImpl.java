@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 import uk.laxd.deepweb.executor.ExecutorDefinitionFactory;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
-import uk.laxd.deepweb.plugin.ExecutorDefinition;
-import uk.laxd.deepweb.plugin.ExecutionResult;
-import uk.laxd.deepweb.plugin.ExecutorManager;
+import uk.laxd.deepweb.executor.ExecutorDefinition;
+import uk.laxd.deepweb.executor.ExecutionResult;
+import uk.laxd.deepweb.executor.ExecutorManager;
 
 import java.util.Collection;
 import java.util.Map;

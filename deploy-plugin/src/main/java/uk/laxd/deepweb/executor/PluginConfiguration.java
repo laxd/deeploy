@@ -1,4 +1,4 @@
-package uk.laxd.deepweb.plugin;
+package uk.laxd.deepweb.executor;
 
 /**
  * Created by lawrence on 29/02/16.

@@ -3,7 +3,7 @@ package uk.laxd.deepweb.mapper;
 import org.springframework.stereotype.Component;
 import uk.laxd.deepweb.dto.ExecutorDefinitionDto;
 import uk.laxd.deepweb.lang.MappingNotSupportedException;
-import uk.laxd.deepweb.plugin.ExecutorDefinition;
+import uk.laxd.deepweb.executor.ExecutorDefinition;
 
 /**
  * Created by lawrence on 15/03/16.
