@@ -11,5 +11,4 @@ import java.util.Map;
  */
 public interface BuildFlowStepArgumentService {
     BuildFlowStepArgument findById(Long id);
-    Map<String, String> createArgumentMap(Collection<BuildFlowStepArgument> argumentList);
 }

@@ -28,15 +28,4 @@ public class BuildFlowStepArgumentServiceImpl implements BuildFlowStepArgumentSe
 			return null;
 		}
 	}
-
-	@Override
-	public Map<String, String> createArgumentMap(Collection<BuildFlowStepArgument> argumentList) {
-		Map<String, String> map = new HashMap<>();
-
-		for(BuildFlowStepArgument argument : argumentList) {
-			map.put(argument.getName(), argument.getValue());
-		}
-
-		return map;
-	}
 }

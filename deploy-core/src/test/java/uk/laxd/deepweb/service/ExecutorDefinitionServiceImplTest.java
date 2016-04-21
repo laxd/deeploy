@@ -6,12 +6,17 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import uk.laxd.deepweb.executor.ExecutorDefinitionFactory;
+import uk.laxd.deepweb.executor.ExecutorDefinition;
+import uk.laxd.deepweb.executor.ExecutorManager;
 import uk.laxd.deepweb.model.BuildFlowStep;
-import uk.laxd.deepweb.executor.*;
+import uk.laxd.deepweb.model.BuildFlowStepArgument;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.mockito.Matchers.anyMap;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -19,16 +24,13 @@ import static org.mockito.Mockito.when;
  * Created by lawrence on 02/03/16.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ExecutorDefinitionServiceImplJUnitTest {
+public class ExecutorDefinitionServiceImplTest {
 
     @InjectMocks
     private BuildFlowStepExecutorService buildFlowStepExecutorService = new BuildFlowStepExecutorServiceImpl();
 
     @Mock
-    private ExecutorDefinitionFactory executorDefinitionFactory;
-
-    @Mock
-    private BuildFlowStepArgumentService buildFlowStepArgumentService;
+    private BuildFlowStepArgumentCollectionToMap collectionToMap;
 
     @Mock
     private ExecutorManager executorManager;

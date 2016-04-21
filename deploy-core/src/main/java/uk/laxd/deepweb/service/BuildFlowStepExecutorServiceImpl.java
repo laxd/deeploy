@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.laxd.deepweb.executor.ExecutorDefinitionFactory;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
 import uk.laxd.deepweb.executor.ExecutorDefinition;
@@ -23,10 +22,7 @@ public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorSe
 	private static final Logger LOGGER = LoggerFactory.getLogger(BuildFlowStepExecutorServiceImpl.class);
 
 	@Autowired
-	private ExecutorDefinitionFactory executorDefinitionFactory;
-
-	@Autowired
-	private BuildFlowStepArgumentService buildFlowStepArgumentService;
+	private BuildFlowStepArgumentCollectionToMap collectionToMap;
 
 	@Autowired
 	private ExecutorManager executorManager;
@@ -34,7 +30,7 @@ public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorSe
 	@Override
 	public ExecutionResult execute(BuildFlowStep buildFlowStep) {
 		Collection<BuildFlowStepArgument> argumentList = buildFlowStep.getArguments();
-		Map<String, String> arguments = buildFlowStepArgumentService.createArgumentMap(argumentList);
+		Map<String, String> arguments = collectionToMap.toMap(argumentList);
 
 		ExecutorDefinition executorDefinition = executorManager.getExecutorDefinition(buildFlowStep.getExecutorName());
 
