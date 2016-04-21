@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
  * Created by lawrence on 14/04/16.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ExecutorRegistryJUnitTest {
+public class ExecutorRegistryTest {
 
     private static final String EXECUTOR_NAME = "Plugin Name";
 
@@ -31,7 +31,7 @@ public class ExecutorRegistryJUnitTest {
 
     @Test
     public void testAnAddedPluginCanBeRetrievedByName() throws Exception {
-        executorRegistry.registerExecutor(executorDefinition);
+        executorRegistry.register(executorDefinition);
 
         assertEquals(executorDefinition, executorRegistry.getExecutor(EXECUTOR_NAME));
     }

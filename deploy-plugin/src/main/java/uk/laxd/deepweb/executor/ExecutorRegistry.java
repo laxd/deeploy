@@ -2,12 +2,14 @@ package uk.laxd.deepweb.executor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 /**
  * Created by lawrence on 14/03/16.
  */
+@Component
 public class ExecutorRegistry {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExecutorRegistry.class);
@@ -28,10 +30,6 @@ public class ExecutorRegistry {
     }
 
     public void register(ExecutorDefinition executorDefinition) {
-
-    }
-
-    public void registerExecutor(ExecutorDefinition executorDefinition) {
         executors.add(executorDefinition);
     }
 }

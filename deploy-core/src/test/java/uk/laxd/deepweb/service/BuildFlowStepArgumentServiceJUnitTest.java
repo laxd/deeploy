@@ -22,7 +22,7 @@ public class BuildFlowStepArgumentServiceJUnitTest {
     public void testName() throws Exception {
         BuildFlowStepArgument buildFlowStepArgument = new BuildFlowStepArgument();
         buildFlowStepArgument.setName("TEST");
-        buildFlowStepArgument.setValue("TEST_VALUE");
+        buildFlowStepArgument.setValue("VALUE_WITH_UNDERSCORES");
 
         BuildFlowStepArgument buildFlowStepArgument2 = new BuildFlowStepArgument();
         buildFlowStepArgument2.setName("TEST2");
