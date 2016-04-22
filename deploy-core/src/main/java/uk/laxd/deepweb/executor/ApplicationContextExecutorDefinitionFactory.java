@@ -18,6 +18,7 @@ public class ApplicationContextExecutorDefinitionFactory implements ExecutorDefi
 
     private ApplicationContext applicationContext;
 
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
 

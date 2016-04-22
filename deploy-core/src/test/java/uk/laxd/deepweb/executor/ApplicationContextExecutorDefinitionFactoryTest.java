@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContext;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.*;
 
@@ -28,28 +29,32 @@ public class ApplicationContextExecutorDefinitionFactoryTest {
 
     private Map<String, ExecutorDefinition> executorDefinitionMap;
 
-    @Mock
-    private ExecutorDefinition executorDefinition;
+    private GitExecutorDefinition gitExecutorDefinition = new GitExecutorDefinition();
+    private MvnExecutorDefinition mvnExecutorDefinition = new MvnExecutorDefinition();
+    private SshExecutorDefinition sshExecutorDefinition = new SshExecutorDefinition();
 
     @Before
     public void setUp() throws Exception {
         executorDefinitionMap = new HashMap<>();
 
-        when(executorDefinition.getName()).thenReturn("SSH");
+        executorDefinitionMap.put(gitExecutorDefinition.getName(), gitExecutorDefinition);
+        executorDefinitionMap.put(mvnExecutorDefinition.getName(), mvnExecutorDefinition);
+        executorDefinitionMap.put(sshExecutorDefinition.getName(), sshExecutorDefinition);
 
         when(applicationContext.getBeansOfType(ExecutorDefinition.class)).thenReturn(executorDefinitionMap);
+        when(applicationContext.getBean(GitExecutorDefinition.class)).thenReturn(gitExecutorDefinition);
+        when(applicationContext.getBean(MvnExecutorDefinition.class)).thenReturn(mvnExecutorDefinition);
+        when(applicationContext.getBean(SshExecutorDefinition.class)).thenReturn(sshExecutorDefinition);
+
+        executorDefinitionFactory.setApplicationContext(applicationContext);
     }
 
     @Test
     public void testCreateByType() throws Exception {
-        executorDefinitionMap.put("SSH", executorDefinition);
+        ExecutorDefinition executor = executorDefinitionFactory.createExecutor(gitExecutorDefinition.getName());
 
-        executorDefinitionFactory.setApplicationContext(applicationContext);
+        assertNotNull(executor);
 
-        String type = "SSH";
-
-        ExecutorDefinition executor = executorDefinitionFactory.createExecutor(type);
-
-        verify(applicationContext).getBean(any(Class.class));
+        verify(applicationContext).getBean(GitExecutorDefinition.class);
     }
 }

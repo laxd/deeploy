@@ -9,12 +9,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 import uk.laxd.deepweb.executor.ExecutorDefinition;
 import uk.laxd.deepweb.executor.ExecutorManager;
 import uk.laxd.deepweb.model.BuildFlowStep;
-import uk.laxd.deepweb.model.BuildFlowStepArgument;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.mockito.Matchers.anyMap;
 import static org.mockito.Mockito.verify;
@@ -24,7 +18,9 @@ import static org.mockito.Mockito.when;
  * Created by lawrence on 02/03/16.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class ExecutorDefinitionServiceImplTest {
+public class BuildFlowStepExecutorServiceImplTest {
+
+    private static final String EXECUTOR_NAME = "Executor Name";
 
     @InjectMocks
     private BuildFlowStepExecutorService buildFlowStepExecutorService = new BuildFlowStepExecutorServiceImpl();
@@ -40,13 +36,13 @@ public class ExecutorDefinitionServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        when(executorManager.getExecutorDefinition("Executor Name")).thenReturn(executorDefinition);
+        when(executorManager.getExecutorDefinition(EXECUTOR_NAME)).thenReturn(executorDefinition);
     }
 
     @Test
     public void testExecutorServiceExecutesExecutor() throws Exception {
         BuildFlowStep buildFlowStep = new BuildFlowStep();
-        buildFlowStep.setExecutorName("Executor Name");
+        buildFlowStep.setExecutorName(EXECUTOR_NAME);
 
         buildFlowStepExecutorService.execute(buildFlowStep);
 
