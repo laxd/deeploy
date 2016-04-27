@@ -1,5 +1,6 @@
 package uk.laxd.deepweb.service;
 
+import uk.laxd.deepweb.lang.ExecutorNotFoundException;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.executor.ExecutionResult;
 import uk.laxd.deepweb.executor.ExecutorDefinition;
@@ -14,4 +15,5 @@ public interface BuildFlowStepExecutorService {
     ExecutionResult execute(BuildFlowStep buildFlowStep);
 
     Collection<ExecutorDefinition> getExecutorDefinitions();
+    ExecutorDefinition getExecutorDefinitionByName(String name) throws ExecutorNotFoundException;
 }

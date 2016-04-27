@@ -43,4 +43,9 @@ public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorSe
 	public Collection<ExecutorDefinition> getExecutorDefinitions() {
 		return executorManager.getExecutorDefinitions();
 	}
+
+	@Override
+	public ExecutorDefinition getExecutorDefinitionByName(String name) {
+		return executorManager.getExecutorDefinition(name);
+	}
 }
