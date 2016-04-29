@@ -16,6 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import uk.laxd.deepweb.executor.ExecutorDefinition;
 import uk.laxd.deepweb.executor.SshExecutorDefinition;
+import uk.laxd.deepweb.lang.ExecutorNotFoundException;
 import uk.laxd.deepweb.service.BuildFlowStepExecutorService;
 
 import static org.junit.Assert.*;
@@ -88,6 +89,8 @@ public class ExecutorControllerTest {
 
     @Test
     public void testInvalidTypeThrowsException() throws Exception {
+        when(buildFlowStepExecutorService.getExecutorDefinitionByName(INVALID_EXECUTOR_DEFINITION_NAME)).thenThrow(new ExecutorNotFoundException(INVALID_EXECUTOR_DEFINITION_NAME));
+
         mockMvc.perform(get(MODAL_URL)
                 .param("type", INVALID_EXECUTOR_DEFINITION_NAME))
                 .andExpect(status().is4xxClientError());

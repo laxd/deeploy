@@ -42,9 +42,6 @@ public class BuildFlowController {
 	private BuildFlowService buildFlowService;
 
 	@Autowired
-	private BuildFlowStepService buildFlowStepService;
-
-	@Autowired
 	private BuildFlowStepExecutorService executorService;
 
 	@Autowired
@@ -59,24 +56,25 @@ public class BuildFlowController {
 	@Autowired
 	private ExecutorDefinitionMapper executorDefinitionMapper;
 
+	@ModelAttribute("executors")
+	public Collection<ExecutorDefinitionDto> getExecutorDefinitions() {
+		return executorDefinitionMapper.mapToDtos(executorService.getExecutorDefinitions());
+	}
+
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
 	public ModelAndView showBuildFlow(ModelAndView modelAndView,
 			@PathVariable Long id) {
 		LOGGER.debug("Showing build flow {}", id);
-		modelAndView.setViewName("buildflow/view");
-		modelAndView.addObject("buildFlow", buildFlowService.findById(id));
 
 		BuildFlow buildFlow = buildFlowService.findById(id);
 
-		ViewBuildFlowDto viewBuildFlow = viewBuildFlowMapper.mapToDto(buildFlow);
+		ViewBuildFlowDto buildFlowDto = viewBuildFlowMapper.mapToDto(buildFlow);
 
 		Collection<ViewBuildFlowStepDto> steps = viewBuildFlowStepMapper.mapToDtos(buildFlow.getBuildFlowSteps());
 
-		Collection<ExecutorDefinitionDto> executors = executorDefinitionMapper.mapToDtos(executorService.getExecutorDefinitions());
-
-		modelAndView.addObject("buildFlow", viewBuildFlow);
+		modelAndView.setViewName("buildflow/view");
+		modelAndView.addObject("buildFlow", buildFlowDto);
 		modelAndView.addObject("steps", steps);
-		modelAndView.addObject("executors", executors);
 
 		return modelAndView;
 	}
@@ -104,31 +102,12 @@ public class BuildFlowController {
 
 		buildFlowService.create(buildFlow);
 
-		RedirectView redirectView = new RedirectView("/flow/" + buildFlow.getId());
-		return redirectView;
+		return new RedirectView("/flow/" + buildFlow.getId());
 	}
 
 	@RequestMapping(value = "{id}/step/add/{type}")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void add(@PathVariable Long id, @RequestParam Map<String, String> arguments, @PathVariable String type) {
-		BuildFlow buildFlow = buildFlowService.findById(id);
-
-		// TODO: Push this down to service
-		BuildFlowStep buildFlowStep = new BuildFlowStep();
-		buildFlowStep.setExecutorName(type);
-
-		buildFlowStepService.create(buildFlowStep);
-
-		for(String key : arguments.keySet()) {
-			String value = arguments.get(key);
-			BuildFlowStepArgument buildFlowStepArgument = new BuildFlowStepArgument();
-			buildFlowStepArgument.setName(key);
-			buildFlowStepArgument.setValue(value);
-			buildFlowStepArgument.setBuildFlowStep(buildFlowStep);
-
-			buildFlowStep.getArguments().add(buildFlowStepArgument);
-		}
-
-		buildFlow.getBuildFlowSteps().add(buildFlowStep);
+		buildFlowService.addStep(id, type, arguments);
 	}
 }

@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uk.laxd.deepweb.lang.ExecutorNotFoundException;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
 import uk.laxd.deepweb.executor.ExecutorDefinition;
@@ -45,7 +46,14 @@ public class BuildFlowStepExecutorServiceImpl implements BuildFlowStepExecutorSe
 	}
 
 	@Override
-	public ExecutorDefinition getExecutorDefinitionByName(String name) {
-		return executorManager.getExecutorDefinition(name);
+	public ExecutorDefinition getExecutorDefinitionByName(String name) throws ExecutorNotFoundException {
+		ExecutorDefinition executorDefinition = executorManager.getExecutorDefinition(name);
+
+		if(executorDefinition == null) {
+			LOGGER.error("Couldn't find executor of name {}", name);
+			throw new ExecutorNotFoundException();
+		}
+
+		return executorDefinition;
 	}
 }

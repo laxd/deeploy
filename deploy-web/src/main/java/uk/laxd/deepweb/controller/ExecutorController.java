@@ -29,15 +29,10 @@ public class ExecutorController {
     private BuildFlowStepExecutorService executorService;
 
     @RequestMapping(value = "modal")
-    public ModelAndView getModal(String type, HttpServletResponse response) {
+    public ModelAndView getModal(String type) {
         LOGGER.debug("Getting modal for {}", type);
 
         ExecutorDefinition definition = executorService.getExecutorDefinitionByName(type);
-
-        if(definition == null) {
-            response.setStatus(403);
-            return null;
-        }
 
         ModelAndView modelAndView = new ModelAndView("buildflowstep/executor_config");
         modelAndView.addObject("type", type);
@@ -49,6 +44,6 @@ public class ExecutorController {
     @ExceptionHandler(ExecutorNotFoundException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public void handleException(ExecutorNotFoundException exception) {
-
+        LOGGER.error("Received exception: {}", exception.getMessage());
     }
 }
