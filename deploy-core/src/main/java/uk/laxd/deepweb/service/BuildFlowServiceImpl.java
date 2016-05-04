@@ -3,6 +3,7 @@ package uk.laxd.deepweb.service;
 import com.j256.ormlite.dao.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uk.laxd.deepweb.lang.ExecutorDatabaseException;
 import uk.laxd.deepweb.model.BuildFlow;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
@@ -74,7 +75,7 @@ public class BuildFlowServiceImpl implements BuildFlowService {
 		try {
 			buildFlowDao.update(buildFlow);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ExecutorDatabaseException("Failed to add executor", e);
 		}
 	}
 }

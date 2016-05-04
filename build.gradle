@@ -16,7 +16,9 @@ subprojects {
 		testCompile(
 			"junit:junit:4+",
 			"org.mockito:mockito-core:1+",
-			"com.h2database:h2:1.4+"
+			"com.h2database:h2:1.4+",
+			"org.seleniumhq.selenium:selenium-java:2.52+",
+			'org.seleniumhq.selenium:selenium-htmlunit-driver:2.52+'
 		)
 
 		compile(

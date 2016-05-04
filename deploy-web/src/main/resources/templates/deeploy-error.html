@@ -10,8 +10,8 @@
 	</head>
 	<body>
 		<div class="container">
-			<p th:text=#{error.encountered}>Encountered an error:</p>
-			<p th:text=@{error.message}>Error Message!</p>
+			<p th:text="${error.encountered}">Encountered an error:</p>
+			<p th:text="${error.message}">Error Message!</p>
 		</div>
 	</body>
 </html>

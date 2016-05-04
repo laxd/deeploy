@@ -14,9 +14,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import uk.laxd.deepweb.dto.ExecutorDefinitionDto;
 import uk.laxd.deepweb.lang.Constants;
+import uk.laxd.deepweb.lang.ExecutorDatabaseException;
+import uk.laxd.deepweb.lang.ExecutorNotFoundException;
 import uk.laxd.deepweb.mapper.ExecutorDefinitionMapper;
-import uk.laxd.deepweb.model.BuildFlowStep;
-import uk.laxd.deepweb.model.BuildFlowStepArgument;
 import uk.laxd.deepweb.service.BuildFlowService;
 import org.springframework.web.servlet.view.RedirectView;
 import uk.laxd.deepweb.model.BuildFlow;
@@ -27,7 +27,6 @@ import uk.laxd.deepweb.dto.EditBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowDto;
 import uk.laxd.deepweb.dto.ViewBuildFlowStepDto;
 import uk.laxd.deepweb.service.BuildFlowStepExecutorService;
-import uk.laxd.deepweb.service.BuildFlowStepService;
 
 /**
  * Created by Lenny on 19/09/2015.
@@ -109,5 +108,11 @@ public class BuildFlowController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public void add(@PathVariable Long id, @RequestParam Map<String, String> arguments, @PathVariable String type) {
 		buildFlowService.addStep(id, type, arguments);
+	}
+
+	@ExceptionHandler(ExecutorDatabaseException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public void handleException(ExecutorNotFoundException exception) {
+		LOGGER.error("Received exception: {}", exception.getMessage());
 	}
 }
