@@ -1,0 +1,26 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url "http://repo.spring.io/release" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+	}
+}
+
+apply plugin: 'spring-boot'
+
+dependencies {
+	compile (
+		project(":deploy-core"),
+		"org.springframework.boot:spring-boot-starter-log4j2"
+	)
+
+	testCompile "org.springframework:spring-test:$springVersion"
+
+	compile("org.springframework.boot:spring-boot-starter-web") {
+		exclude module:"spring-boot-starter-logging"
+		exclude group:"org.slf4j"
+		exclude group:"ch.qos.logback"
+	}
+}

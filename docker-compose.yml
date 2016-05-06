@@ -1,5 +1,9 @@
 version: '2'
 services: 
+  api:
+    build: ./deploy-api
+    ports:
+    - "8091:8091"
   db:
     image: mysql
     environment:

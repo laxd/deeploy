@@ -1,3 +1,4 @@
 include 'deploy-plugin'
 include 'deploy-core'
+include 'deploy-api'
 include 'deploy-web'
