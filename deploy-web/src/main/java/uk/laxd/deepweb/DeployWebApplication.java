@@ -10,13 +10,13 @@ import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 @ImportResource("classpath:dao-config.xml")
-public class DeeployApplication {
+public class DeployWebApplication {
 
 	@Autowired
 	private ExecutorManager executorManager;
 	
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(DeeployApplication.class, args);
+		SpringApplication.run(DeployWebApplication.class, args);
 	}
 
 	@PostConstruct
