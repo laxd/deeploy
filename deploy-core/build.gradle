@@ -4,15 +4,14 @@ dependencies {
 			"org.springframework:spring-core:$springVersion",
 			"org.springframework:spring-context:$springVersion",
 			"org.springframework:spring-jdbc:$springVersion",
+			"org.springframework.data:spring-data-jpa:1.10+",
+			"javax.persistence:persistence-api:1+",
 
 			"mysql:mysql-connector-java:5.1.6",
 
 			"com.jcraft:jsch:0.1+",
 			"org.eclipse.jgit:org.eclipse.jgit:4.2.0+",
 			"org.apache.maven.shared:maven-invoker:2.0+",
-
-			"com.j256.ormlite:ormlite-core:4+",
-			"com.j256.ormlite:ormlite-jdbc:4+"
     )
 
 	testCompile "org.springframework:spring-test:$springVersion"

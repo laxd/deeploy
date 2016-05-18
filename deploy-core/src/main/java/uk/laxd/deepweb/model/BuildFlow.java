@@ -1,22 +1,17 @@
 package uk.laxd.deepweb.model;
 
-import com.j256.ormlite.dao.ForeignCollection;
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
-import com.j256.ormlite.table.DatabaseTable;
-import uk.laxd.deepweb.lang.Constants;
+import javax.persistence.Entity;
+import java.util.Collection;
 
 /**
  * Created by lawrence on 16/02/16.
  */
-@DatabaseTable(tableName = Constants.DB.BuildFlow.TABLE_NAME)
+@Entity
 public class BuildFlow extends DatabaseObject {
 
-    @DatabaseField(columnName = Constants.DB.BuildFlow.NAME_COLUMN)
     private String name;
 
-    @ForeignCollectionField(foreignFieldName = "buildFlow")
-    private ForeignCollection<BuildFlowStep> buildFlowSteps;
+    private Collection<BuildFlowStep> buildFlowSteps;
 
     public String getName() {
         return name;
@@ -26,11 +21,11 @@ public class BuildFlow extends DatabaseObject {
         this.name = name;
     }
 
-    public ForeignCollection<BuildFlowStep> getBuildFlowSteps() {
+    public Collection<BuildFlowStep> getBuildFlowSteps() {
         return buildFlowSteps;
     }
 
-    public void setBuildFlowSteps(ForeignCollection<BuildFlowStep> buildFlowSteps) {
+    public void setBuildFlowSteps(Collection<BuildFlowStep> buildFlowSteps) {
         this.buildFlowSteps = buildFlowSteps;
     }
 }

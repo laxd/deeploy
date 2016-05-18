@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface BuildFlowService {
 	BuildFlow findById(Long id);
-	List<BuildFlow> findAll();
+	Iterable<BuildFlow> findAll();
 	void create(BuildFlow buildFlow);
 	void addStep(Long id, String type, Map<String, String> arguments);
 }

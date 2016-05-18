@@ -2,6 +2,8 @@ package uk.laxd.deepweb.service;
 
 import uk.laxd.deepweb.model.BuildFlowStep;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -9,6 +11,6 @@ import java.util.List;
  */
 public interface BuildFlowStepService {
     BuildFlowStep findById(Long id);
-    List<BuildFlowStep> findAll();
+    Iterable<BuildFlowStep> findAll();
     void create(BuildFlowStep buildFlow);
 }

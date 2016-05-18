@@ -1,11 +1,11 @@
 package uk.laxd.deepweb.service;
 
-import com.j256.ormlite.dao.Dao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import uk.laxd.deepweb.dao.BuildFlowStepDao;
 import uk.laxd.deepweb.model.BuildFlowStep;
 
 import java.sql.SQLException;
@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class BuildFlowStepServiceTest {
 
     @Mock
-    private Dao<BuildFlowStep, Long> buildFlowDao;
+    private BuildFlowStepDao buildFlowDao;
 
     @InjectMocks
     private BuildFlowStepService buildFlowStepService = new BuildFlowStepServiceImpl();
@@ -32,34 +32,14 @@ public class BuildFlowStepServiceTest {
     public void testFindById() throws Exception {
         buildFlowStepService.findById(1L);
 
-        verify(buildFlowDao).queryForId(1L);
-    }
-
-    @Test
-    public void testFindByIdExceptionNotPropogated() throws Exception {
-        when(buildFlowDao.queryForId(1L)).thenThrow(new SQLException());
-
-        BuildFlowStep buildFlowStep = buildFlowStepService.findById(1L);
-
-        verify(buildFlowDao).queryForId(1L);
-        assertNull(buildFlowStep);
+        verify(buildFlowDao).findOne(1L);
     }
 
     @Test
     public void testFindAll() throws Exception {
         buildFlowStepService.findAll();
 
-        verify(buildFlowDao).queryForAll();
-    }
-
-    @Test
-    public void testFindAllExceptionNotPropogated() throws Exception {
-        when(buildFlowDao.queryForAll()).thenThrow(new SQLException());
-
-        List<BuildFlowStep> buildFlowSteps = buildFlowStepService.findAll();
-
-        verify(buildFlowDao).queryForAll();
-        assertEquals(0, buildFlowSteps.size());
+        verify(buildFlowDao).findAll();
     }
 
     @Test
@@ -67,17 +47,6 @@ public class BuildFlowStepServiceTest {
         BuildFlowStep buildFlowStep = mock(BuildFlowStep.class);
         buildFlowStepService.create(buildFlowStep);
 
-        verify(buildFlowDao).create(buildFlowStep);
-    }
-
-    @Test
-    public void testCreateExceptionNotPropogated() throws Exception {
-        BuildFlowStep buildFlowStep = mock(BuildFlowStep.class);
-
-        when(buildFlowDao.create(buildFlowStep)).thenThrow(new SQLException());
-
-        buildFlowStepService.create(buildFlowStep);
-
-        verify(buildFlowDao).create(buildFlowStep);
+        verify(buildFlowDao).save(buildFlowStep);
     }
 }

@@ -23,7 +23,7 @@ public class BuildFlowController {
 	private BuildFlowService buildFlowService;
 
 	@RequestMapping(path = {"", "/"}, method = RequestMethod.GET)
-	public Collection<BuildFlow> getFlows() {
+	public Iterable<BuildFlow> getFlows() {
 		return buildFlowService.findAll();
 	}
 

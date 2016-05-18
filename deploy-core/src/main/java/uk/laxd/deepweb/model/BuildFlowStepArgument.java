@@ -1,22 +1,17 @@
 package uk.laxd.deepweb.model;
 
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.table.DatabaseTable;
-import uk.laxd.deepweb.lang.Constants;
+import javax.persistence.Entity;
 
 /**
  * Created by lawrence on 24/02/16.
  */
-@DatabaseTable(tableName = Constants.DB.BuildFlowStepArgument.TABLE_NAME)
+@Entity
 public class BuildFlowStepArgument extends DatabaseObject {
 
-    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.NAME_COLUMN)
     private String name;
 
-    @DatabaseField(columnName = Constants.DB.BuildFlowStepArgument.VALUE_COLUMN)
     private String value;
 
-    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = "BUILD_FLOW_STEP_ID")
     private BuildFlowStep buildFlowStep;
 
     public String getValue() {

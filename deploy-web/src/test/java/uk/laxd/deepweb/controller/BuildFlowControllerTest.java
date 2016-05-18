@@ -1,13 +1,11 @@
 package uk.laxd.deepweb.controller;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -22,14 +20,12 @@ import uk.laxd.deepweb.model.BuildFlow;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.service.BuildFlowService;
 import uk.laxd.deepweb.service.BuildFlowStepExecutorService;
-import uk.laxd.deepweb.service.BuildFlowStepService;
 
 import java.util.Collection;
 import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -78,7 +74,7 @@ public class BuildFlowControllerTest {
     private ViewBuildFlowDto buildFlowDto;
 
     @Mock
-    private ForeignCollection<BuildFlowStep> steps;
+    private Collection<BuildFlowStep> steps;
 
     @Mock
     private Collection<ViewBuildFlowStepDto> stepDtos;
@@ -155,7 +151,7 @@ public class BuildFlowControllerTest {
 
     @Test
     public void testAddBuildFlowPostRedirectsToViewPage() throws Exception {
-        when(editBuildFlowMapper.mapToEntity(any())).thenReturn(buildFlow);
+        when(editBuildFlowMapper.mapToEntity(any(EditBuildFlowDto.class))).thenReturn(buildFlow);
         when(buildFlow.getId()).thenReturn(123L);
 
         mockMvc.perform(post(ADD_FLOW_URL)

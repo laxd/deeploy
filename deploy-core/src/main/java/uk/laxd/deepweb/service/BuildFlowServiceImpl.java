@@ -1,17 +1,13 @@
 package uk.laxd.deepweb.service;
 
-import com.j256.ormlite.dao.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.laxd.deepweb.lang.ExecutorDatabaseException;
+import uk.laxd.deepweb.dao.BuildFlowDao;
 import uk.laxd.deepweb.model.BuildFlow;
 import uk.laxd.deepweb.model.BuildFlowStep;
 import uk.laxd.deepweb.model.BuildFlowStepArgument;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by lawrence on 16/02/16.
@@ -20,41 +16,25 @@ import java.util.Map;
 public class BuildFlowServiceImpl implements BuildFlowService {
 
 	@Autowired
-	private Dao<BuildFlow, Long> buildFlowDao;
+	private BuildFlowDao buildFlowDao;
 
 	@Override
 	public BuildFlow findById(Long id) {
-		try {
-			return buildFlowDao.queryForId(id);
-		} catch(SQLException e){
-			e.printStackTrace();
-			return null;
-		}
+		return buildFlowDao.findOne(id);
 	}
 
 	@Override
-	public List<BuildFlow> findAll() {
-		try {
-			return buildFlowDao.queryForAll();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return new ArrayList<>();
-		}
+	public Iterable<BuildFlow> findAll() {
+		return buildFlowDao.findAll();
 	}
 
 	@Override
 	public void create(BuildFlow buildFlow) {
-		try {
-			buildFlowDao.create(buildFlow);
-		}
-		catch (SQLException e) {
-			e.printStackTrace();
-		}
+		buildFlowDao.save(buildFlow);
 	}
 
 	@Override
 	public void addStep(Long id, String type, Map<String, String> arguments) {
-
 		BuildFlowStep buildFlowStep = new BuildFlowStep();
 		buildFlowStep.setExecutorName(type);
 
@@ -72,10 +52,6 @@ public class BuildFlowServiceImpl implements BuildFlowService {
 
 		buildFlow.getBuildFlowSteps().add(buildFlowStep);
 
-		try {
-			buildFlowDao.update(buildFlow);
-		} catch (SQLException e) {
-			throw new ExecutorDatabaseException("Failed to add executor", e);
-		}
+		buildFlowDao.save(buildFlow);
 	}
 }
