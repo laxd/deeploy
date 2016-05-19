@@ -22,7 +22,9 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ModelAndView handleException(Exception exception, HttpServletRequest request) throws Exception {
-        LOGGER.error("Received exception: {}", exception.getMessage());
+        LOGGER.error("Received exception: {} - {}", exception, exception.getMessage());
+
+        exception.printStackTrace();
 
         if (AnnotationUtils.findAnnotation(exception.getClass(), ResponseStatus.class) != null) {
             throw exception;

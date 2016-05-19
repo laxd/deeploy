@@ -28,7 +28,7 @@ public class BuildFlowController {
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
-	public BuildFlow showBuildFlow(@PathVariable Long id) {
+	public BuildFlow showBuildFlow(@PathVariable String id) {
 		return buildFlowService.findById(id);
 	}
 

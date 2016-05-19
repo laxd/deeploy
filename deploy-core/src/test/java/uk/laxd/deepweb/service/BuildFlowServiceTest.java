@@ -22,6 +22,8 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class BuildFlowServiceTest {
 
+    private static final String ID = "1";
+
     @Mock
     private BuildFlowDao buildFlowDao;
 
@@ -30,9 +32,9 @@ public class BuildFlowServiceTest {
 
     @Test
     public void testFindById() throws Exception {
-        buildFlowService.findById(1L);
+        buildFlowService.findById(ID);
 
-        verify(buildFlowDao).findOne(1L);
+        verify(buildFlowDao).findOne(ID);
     }
 
     @Test

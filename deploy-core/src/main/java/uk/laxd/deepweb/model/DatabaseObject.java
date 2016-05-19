@@ -8,9 +8,9 @@ import javax.persistence.Id;
 public abstract class DatabaseObject {
 
     @Id
-    private Long id;
+    private String id;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 }

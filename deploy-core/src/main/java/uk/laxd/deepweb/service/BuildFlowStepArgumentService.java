@@ -10,5 +10,5 @@ import java.util.Map;
  * Created by lawrence on 24/02/16.
  */
 public interface BuildFlowStepArgumentService {
-    BuildFlowStepArgument findById(Long id);
+    BuildFlowStepArgument findById(String id);
 }

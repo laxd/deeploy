@@ -19,7 +19,7 @@ public class BuildFlowServiceImpl implements BuildFlowService {
 	private BuildFlowDao buildFlowDao;
 
 	@Override
-	public BuildFlow findById(Long id) {
+	public BuildFlow findById(String id) {
 		return buildFlowDao.findOne(id);
 	}
 
@@ -34,7 +34,7 @@ public class BuildFlowServiceImpl implements BuildFlowService {
 	}
 
 	@Override
-	public void addStep(Long id, String type, Map<String, String> arguments) {
+	public void addStep(String id, String type, Map<String, String> arguments) {
 		BuildFlowStep buildFlowStep = new BuildFlowStep();
 		buildFlowStep.setExecutorName(type);
 

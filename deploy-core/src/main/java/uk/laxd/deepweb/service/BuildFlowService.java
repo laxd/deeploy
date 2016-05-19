@@ -9,8 +9,8 @@ import java.util.Map;
  * Created by lawrence on 16/02/16.
  */
 public interface BuildFlowService {
-	BuildFlow findById(Long id);
+	BuildFlow findById(String id);
 	Iterable<BuildFlow> findAll();
 	void create(BuildFlow buildFlow);
-	void addStep(Long id, String type, Map<String, String> arguments);
+	void addStep(String id, String type, Map<String, String> arguments);
 }

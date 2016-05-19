@@ -15,6 +15,8 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class BuildFlowStepArgumentServiceTest {
 
+    private static final String ID = "1";
+
     @Mock
     private BuildFlowStepArgumentDao buildFlowStepArgumentDao;
 
@@ -23,8 +25,8 @@ public class BuildFlowStepArgumentServiceTest {
 
     @Test
     public void testFindById() throws Exception {
-        buildFlowStepArgumentService.findById(1L);
+        buildFlowStepArgumentService.findById(ID);
 
-        verify(buildFlowStepArgumentDao).findOne(1L);
+        verify(buildFlowStepArgumentDao).findOne(ID);
     }
 }

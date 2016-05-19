@@ -15,7 +15,7 @@ public class BuildFlowStepServiceImpl implements BuildFlowStepService {
     private BuildFlowStepDao buildFlowStepDao;
 
     @Override
-    public BuildFlowStep findById(Long id) {
+    public BuildFlowStep findById(String id) {
         return buildFlowStepDao.findOne(id);
     }
 

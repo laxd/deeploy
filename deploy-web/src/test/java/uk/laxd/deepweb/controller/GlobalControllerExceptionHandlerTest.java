@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(MockitoJUnitRunner.class)
 public class GlobalControllerExceptionHandlerTest {
 
+    public static final String BUILD_FLOW_ID = "123";
     private MockMvc mockMvc;
 
     @Mock
@@ -49,9 +50,9 @@ public class GlobalControllerExceptionHandlerTest {
 
     @Test
     public void testExceptionIsIntercepted() throws Exception {
-        when(buildFlowService.findById(123L)).thenThrow(new ExecutorNotFoundException());
+        when(buildFlowService.findById(BUILD_FLOW_ID)).thenThrow(new ExecutorNotFoundException());
 
-        mockMvc.perform(get("/flow/123"))
+        mockMvc.perform(get("/flow/" + BUILD_FLOW_ID))
                 .andExpect(view().name("deeploy-error"));
     }
 

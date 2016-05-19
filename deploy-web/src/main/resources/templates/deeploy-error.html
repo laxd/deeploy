@@ -1,8 +1,8 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></link>
 		<link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}"></link>
 
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -10,8 +10,8 @@
 	</head>
 	<body>
 		<div class="container">
-			<p th:text="${error.encountered}">Encountered an error:</p>
-			<p th:text="${error.message}">Error Message!</p>
+			<p>Encountered an error for</p><p th:text="${url}">This Page</p>
+			<p th:text="${errorMessage}">Error Message!</p>
 		</div>
 	</body>
 </html>

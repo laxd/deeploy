@@ -15,7 +15,7 @@ public class BuildFlowStepArgumentServiceImpl implements BuildFlowStepArgumentSe
 	private BuildFlowStepArgumentDao buildFlowStepArgumentDao;
 
 	@Override
-	public BuildFlowStepArgument findById(Long id) {
+	public BuildFlowStepArgument findById(String id) {
 		return buildFlowStepArgumentDao.findOne(id);
 	}
 }

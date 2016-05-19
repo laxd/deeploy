@@ -2,29 +2,22 @@ package uk.laxd.deepweb.mapper;
 
 import java.util.Collection;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public abstract class Mapper<D, E> {
 	public abstract E mapToEntity(D dto);
 	public abstract D mapToDto(E entity);
 
 	public Collection<E> mapToEntities(Collection<D> dtos) {
-		Collection<E> entities = new ArrayList<E>();
-
-		for(D dto : dtos) {
-			entities.add(mapToEntity(dto));
-		}
-
-		return entities;
+		return dtos == null ?  new ArrayList<>() : dtos.stream()
+				.map(this::mapToEntity)
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
 	public Collection<D> mapToDtos(Collection<E> entities) {
-		Collection<D> dtos = new ArrayList<D>();
-
-		for(E entity : entities) {
-			dtos.add(mapToDto(entity));
-		}
-
-		return dtos;
+		return entities == null ?  new ArrayList<>() : entities.stream()
+				.map(this::mapToDto)
+				.collect(Collectors.toCollection(ArrayList::new));
 	}
 
 }

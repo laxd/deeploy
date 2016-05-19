@@ -39,8 +39,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(MockitoJUnitRunner.class)
 public class BuildFlowControllerTest {
 
-    public static final Long BUILD_FLOW_ID = 123L;
-    public static final String FLOW_URL = "/flow/123";
+    public static final String BUILD_FLOW_ID = "123";
+    public static final String FLOW_URL = "/flow/" + BUILD_FLOW_ID;
     private static final String FLOWS_URL = "/flow";
     private static final String ADD_FLOW_URL = "/flow/add";
 
@@ -152,11 +152,11 @@ public class BuildFlowControllerTest {
     @Test
     public void testAddBuildFlowPostRedirectsToViewPage() throws Exception {
         when(editBuildFlowMapper.mapToEntity(any(EditBuildFlowDto.class))).thenReturn(buildFlow);
-        when(buildFlow.getId()).thenReturn(123L);
+        when(buildFlow.getId()).thenReturn(BUILD_FLOW_ID);
 
         mockMvc.perform(post(ADD_FLOW_URL)
                 .param("name", "Test Name"))
-                .andExpect(redirectedUrl("/flow/123"));
+                .andExpect(redirectedUrl(FLOW_URL));
     }
 
 

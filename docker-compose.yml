@@ -7,12 +7,9 @@ services:
     links:
     - db
   db:
-    image: mysql
-    environment:
-    - MYSQL_ROOT_PASSWORD=root
-    - MYSQL_DATABASE=DEEPLOY
+    image: mongo
     expose:
-    - "3306"
+    - "27017"
   web:
     build: ./deploy-web
     ports: 

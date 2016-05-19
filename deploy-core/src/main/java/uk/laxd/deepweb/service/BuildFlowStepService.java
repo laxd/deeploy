@@ -10,7 +10,7 @@ import java.util.List;
  * Created by lawrence on 05/04/16.
  */
 public interface BuildFlowStepService {
-    BuildFlowStep findById(Long id);
+    BuildFlowStep findById(String id);
     Iterable<BuildFlowStep> findAll();
     void create(BuildFlowStep buildFlow);
 }
