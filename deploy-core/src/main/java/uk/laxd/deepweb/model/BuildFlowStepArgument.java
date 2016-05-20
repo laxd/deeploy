@@ -12,8 +12,6 @@ public class BuildFlowStepArgument extends DatabaseObject {
 
     private String value;
 
-    private BuildFlowStep buildFlowStep;
-
     public String getValue() {
         return value;
     }
@@ -28,13 +26,5 @@ public class BuildFlowStepArgument extends DatabaseObject {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public BuildFlowStep getBuildFlowStep() {
-        return buildFlowStep;
-    }
-
-    public void setBuildFlowStep(BuildFlowStep buildFlowStep) {
-        this.buildFlowStep = buildFlowStep;
     }
 }

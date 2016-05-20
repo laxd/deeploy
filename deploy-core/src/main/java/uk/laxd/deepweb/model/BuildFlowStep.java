@@ -1,6 +1,7 @@
 package uk.laxd.deepweb.model;
 
 import javax.persistence.Entity;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -9,19 +10,9 @@ import java.util.Collection;
 @Entity
 public class BuildFlowStep extends DatabaseObject {
 
-	private BuildFlow buildFlow;
-
 	private String executorName;
 
-	private Collection<BuildFlowStepArgument> arguments;
-
-	public BuildFlow getBuildFlow() {
-		return buildFlow;
-	}
-
-	public void setBuildFlow(BuildFlow buildFlow) {
-		this.buildFlow = buildFlow;
-	}
+	private Collection<BuildFlowStepArgument> arguments = new ArrayList<>();
 
 	public String getExecutorName() {
 		return executorName;

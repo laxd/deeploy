@@ -1,4 +1,4 @@
-from java:8
+FROM java:8
 
 ADD build/libs/deploy-api.jar deploy.jar
 

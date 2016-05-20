@@ -43,12 +43,15 @@ public class BuildFlowServiceImpl implements BuildFlowService {
 			BuildFlowStepArgument buildFlowStepArgument = new BuildFlowStepArgument();
 			buildFlowStepArgument.setName(key);
 			buildFlowStepArgument.setValue(value);
-			buildFlowStepArgument.setBuildFlowStep(buildFlowStep);
 
 			buildFlowStep.getArguments().add(buildFlowStepArgument);
 		}
 
 		BuildFlow buildFlow = this.findById(id);
+
+		if(buildFlow == null) {
+			throw new RuntimeException("Found null buildflow for id " + id);
+		}
 
 		buildFlow.getBuildFlowSteps().add(buildFlowStep);
 

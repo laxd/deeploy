@@ -1,6 +1,8 @@
 package uk.laxd.deepweb.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -12,6 +14,7 @@ public class BuildFlow extends DatabaseObject {
 
     private String name;
 
+    @OneToMany(cascade = CascadeType.ALL)
     private Collection<BuildFlowStep> buildFlowSteps = new ArrayList<>();
 
     public String getName() {
@@ -24,9 +27,5 @@ public class BuildFlow extends DatabaseObject {
 
     public Collection<BuildFlowStep> getBuildFlowSteps() {
         return buildFlowSteps;
-    }
-
-    public void setBuildFlowSteps(Collection<BuildFlowStep> buildFlowSteps) {
-        this.buildFlowSteps = buildFlowSteps;
     }
 }

@@ -15,8 +15,7 @@ $(document).ready(function() {
 	}).disableSelection();
 
 	$("#executor-modal").on("click", "#save-executor", function() {
-		// TODO get id and use that instead.
-		var url = "/flow/1/step/add/" + $("#type").val();
+		var url = window.location.pathname + "/step/add/" + $("#type").val();
 
 		var data = $(".executor-argument").serialize();
 
